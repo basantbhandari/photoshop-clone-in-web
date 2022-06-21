@@ -1,0 +1,11 @@
+.bodycontainer__left__bottom_color{
+    bottom: 0;
+    width: 100%;
+    height: 40px;
+    background-color: aqua;
+    position: absolute;
+}
+#colorpicker{
+    width: 100%;
+    height: 100%;
+}

@@ -5,19 +5,114 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>photoshop on web</title>
+	<link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon">
 	<link rel="stylesheet" href="./css/reset.css">
 	<link rel="stylesheet" href="./css/style.css">
 	<link rel="stylesheet" href="./css/layout.css">
 </head>
 <body>
 	
+	<nav id="topbar">
+		<div class="topbar__upper">
+			<img src="./images/icons/photoshop logo.jpg" alt="phtoshop logo">
+			<ul>
+				<li id="topbar__upper__file">File</li>
+				<li id="topbar__upper__edit">Edit</li>
+				<li id="topbar__upper__view">View</li>
+				<li id="topbar__upper__images">Images</li>
+				<li id="topbar__upper__layers">Layers</li>
+				<li id="topbar__upper__text">Text</li>
+				<li id="topbar__upper__filters">Filters</li>
+				<li id="topbar__upper__shapes">Shapes</li>
+				<li id="topbar__upper__help">Help</li>
+			</ul>
+		</div>
+		<div class="topbar__lower">
+			<ul>
+				<li>Add file</li>
+				<li>Get saved file</li>
+				<li>Save file</li>
+				<li>More</li>
+			</ul>
+			<ul>
+				<li>Merge all layers</li>
+				<li>Move up control</li>
+				<li>Move down control</li>
+				<li>Move up layer</li>
+				<li>Move down layer</li>
+			</ul>
+			<ul>
+				<li>View 1</li>
+				<li>View 2</li>
+				<li>View 3</li>
+				<li>View 4</li>
+			</ul>
+			<ul>
+				<li>Add image</li>
+				<!-- resize, move, rotate -->
+			</ul>
+			<ul>
+				<li>Add layer</li>
+				<li>Remove layer</li>
+			</ul>
+			<ul>
+				<li>Add text</li>
+				<li>Remove text</li>
+				<!-- resize, move, rotate, select color -->
+			</ul>
+			<ul>
+				<li>Filter 1</li>
+				<li>Filter 2</li>
+				<li>Filter 3</li>
+				<li>Filter 4</li>
+			</ul>
+			<ul>
+				<li>Add shape</li>
+				<li>Remove shape</li>
+			</ul>
+		</div>
+	</nav>
+	<section id="bodycontainer">
+		<div class="bodycontainer__left">
+			<div class="bodycontainer__left__icon__wrapper">
+				<!-- pen -->
+				<img src="./images/icons/pen.png" alt="pen icon">
+				<img src="./images/icons/eraser.png" alt="icon">
+				<img src="./images/icons/selection.png" alt="icon">
+				<!-- select tools rectangle, triangle, polygon , ellipse-->
+				<img src="./images/icons/rectangle-12-380868.png" alt="icon">
+				<img src="./images/icons/details.png" alt="icon">
+				<img src="./images/icons/polygon-3017709-2507846.png" alt="icon">
+				<img src="./images/icons/text.png" alt="icon">
+				<!-- crop image icon -->
+				<img src="./images/icons/crop.png" alt="icon">
+			</div>
+			<div class="bodycontainer__left__bottom_color">
+				<input type="color" id="colorpicker" value="#000000">
+			</div>
+		</div>
+		<div class="bodycontainer__middle">
 
-
-	<h1>hello world</h1>
-
-
-
-	
+		</div>
+		<div class="bodycontainer__right">
+			<div class="bodycontainer__right__layer__item">
+					<img src="./images/icons/eye.png" alt="icon">
+					<p>Layer 1</p>
+			</div>
+			<div class="bodycontainer__right__layer__item">
+					<img src="./images/icons/eye.png" alt="icon">
+					<p>Layer 2</p>
+			</div>
+			<div class="bodycontainer__right__layer__item">
+				<img src="./images/icons/eye.png" alt="icon">
+				<p>Layer 3</p>
+			</div>
+			<div class="bodycontainer__right__layer__item">
+					<img src="./images/icons/eye.png" alt="icon">
+					<p>Layer 4</p>
+			</div>
+		</div>
+	</section>
 	<script src="./js/main.js"></script>
 </body>
 </html>

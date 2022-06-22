@@ -28,73 +28,118 @@
 			</ul>
 		</div>
 		<div class="topbar__lower">
-			<ul>
-				<li>Add file</li>
-				<li>Get saved file</li>
-				<li>Save file</li>
-				<li>More</li>
-			</ul>
-			<ul>
-				<li>Merge all layers</li>
-				<li>Move up control</li>
-				<li>Move down control</li>
-				<li>Move up layer</li>
-				<li>Move down layer</li>
-			</ul>
-			<ul>
-				<li>View 1</li>
-				<li>View 2</li>
-				<li>View 3</li>
-				<li>View 4</li>
-			</ul>
-			<ul>
-				<li>Add image</li>
-				<!-- resize, move, rotate -->
-			</ul>
-			<ul>
-				<li>Add layer</li>
-				<li>Remove layer</li>
-			</ul>
-			<ul>
-				<li>Add text</li>
-				<li>Remove text</li>
-				<!-- resize, move, rotate, select color -->
-			</ul>
-			<ul>
-				<li>Filter 1</li>
-				<li>Filter 2</li>
-				<li>Filter 3</li>
-				<li>Filter 4</li>
-			</ul>
-			<ul>
-				<li>Add shape</li>
-				<li>Remove shape</li>
-			</ul>
+			<div class="topbar__lower__left">
+				<ul id="topbar__lower__file">
+					<li>Add file</li>
+					<li>Get saved file</li>
+					<li>Save file</li>
+					<li>More</li>
+				</ul>
+				<ul id="topbar__lower__edit">
+					<li>Merge all layers</li>
+					<li>Move up control</li>
+					<li>Move down control</li>
+					<li>Move up layer</li>
+					<li>Move down layer</li>
+				</ul>
+				<ul id="topbar__lower__view">
+					<li>View 1</li>
+					<li>View 2</li>
+					<li>View 3</li>
+					<li>View 4</li>
+				</ul>
+				<ul id="topbar__lower__images">
+					<li>Add image</li>
+					<!-- resize, move, rotate -->
+				</ul>
+				<ul id="topbar__lower__layers">
+					<li id="topbar__lower__layers__add">Add layer</li>
+					<li id="topbar__lower__layers__remove">Remove layer</li>
+				</ul>
+				<ul id="topbar__lower__text">
+					<li>Add text</li>
+					<li>Remove text</li>
+					<!-- resize, move, rotate, select color -->
+				</ul>
+				<ul id="topbar__lower__filters">
+					<li>Filter 1</li>
+					<li>Filter 2</li>
+					<li>Filter 3</li>
+					<li>Filter 4</li>
+				</ul>
+				<ul id="topbar__lower__shapes">
+					<li>Add shape</li>
+					<li>Remove shape</li>
+				</ul>
+				<ul id="topbar__lower__help">
+					<li>Help 1</li>
+					<li>Help 2</li>
+					<li>Help 3</li>
+					<li>Help 4</li>
+				</ul>
+
+			</div>
+			<div class="topbar__lower__right">
+				<div class="draw__config">
+					<!-- for draw -->
+					<!-- draw size -->
+					<label for="draw__config__size">pencil size:</label>
+					<input type="number" id="draw__config__size" name="draw__config__size" min="5" max="100">
+					<!-- draw style(solid or doted) -->
+					<select id="draw__config__style">
+						<option value="solid">solid</option>
+						<option value="doted">doted</option>
+					</select>
+				</div>
+				<div class="erase__config">
+					<!-- for erase -->
+					<label for="erase__config__size">eraser size:</label>
+					<input type="number" id="erase__config__size" name="erase__config__size" min="5" max="100">
+					<!-- eraser size -->
+				</div>
+
+				<div class="text__config">
+				<!-- for text -->
+					<!-- font size, font type -->
+					<label for="font__config__size">font size:</label>
+					<input type="number" id="font__config__size" name="font__config__size" min="5" max="100">
+					<select id="font__config__style">
+						<option value="serif">serif</option>
+						<option value="sansserif">sansserif</option>
+						<option value="cursive">cursive</option>
+						<option value="fantasy">fantasy</option>
+						<option value="monospace">monospace</option>
+					</select>
+				</div>
+			</div>
 		</div>
 	</nav>
 	<section id="bodycontainer">
 		<div class="bodycontainer__left">
 			<div class="bodycontainer__left__icon__wrapper">
 				<!-- pen -->
-				<img src="./images/icons/pen.png" alt="pen icon">
-				<img src="./images/icons/eraser.png" alt="icon">
-				<img src="./images/icons/selection.png" alt="icon">
+				<img class="myImageIcon" src="./images/icons/pen.png" alt="pen icon">
+				<img class="myImageIcon" src="./images/icons/eraser.png" alt="icon">
+				<img class="myImageIcon" src="./images/icons/selection.png" alt="icon">
 				<!-- select tools rectangle, triangle, polygon , ellipse-->
-				<img src="./images/icons/rectangle-12-380868.png" alt="icon">
-				<img src="./images/icons/details.png" alt="icon">
-				<img src="./images/icons/polygon-3017709-2507846.png" alt="icon">
-				<img src="./images/icons/text.png" alt="icon">
+				<img class="myImageIcon" src="./images/icons/rectangle-12-380868.png" alt="icon">
+				<img class="myImageIcon" src="./images/icons/details.png" alt="icon">
+				<img class="myImageIcon" src="./images/icons/polygon-3017709-2507846.png" alt="icon">
+				<img class="myImageIcon" src="./images/icons/text.png" alt="icon">
 				<!-- crop image icon -->
-				<img src="./images/icons/crop.png" alt="icon">
+				<img class="myImageIcon" src="./images/icons/crop.png" alt="icon">
 			</div>
 			<div class="bodycontainer__left__bottom_color">
 				<input type="color" id="colorpicker" value="#000000">
 			</div>
 		</div>
 		<div class="bodycontainer__middle">
+			<canvas id="myCanvas">
 
+			</canvas>
 		</div>
 		<div class="bodycontainer__right">
+			<!-- Draggable DIV -->
 			<div class="bodycontainer__right__layer__item">
 					<img src="./images/icons/eye.png" alt="icon">
 					<p>Layer 1</p>
@@ -114,5 +159,16 @@
 		</div>
 	</section>
 	<script src="./js/main.js"></script>
+	<script src="./js/color/color.js"></script>
+	<script src="./js/topbar/topbarEventHandler.js"></script>
+	<script src="./js/layer/addLayer.js"></script>
+	<script src="./js/layer/removeLayer.js"></script>
+	<script src="./js/layer/layerClick.js"></script>
+	<script src="./js/quickAccssTool/toolclick.js"></script>
+	<script src="./js/configWindow/visibility.js"></script>
+	<script src="./js/canvas/canvasProperties.js"></script>
+	<script src="./js/canvas/drawingOnCanvas.js"></script>
+
+
 </body>
 </html>

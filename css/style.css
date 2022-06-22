@@ -9,3 +9,38 @@
     width: 100%;
     height: 100%;
 }
+.topbar__upper__hide_menu{
+    display: none;
+}
+/* styling the config div */
+.draw__config{
+    width: 100%;
+    height: 100%;
+}
+.draw__config label{
+    color: black;
+    font-style:bold;
+}
+.draw__config input[type="number"]{
+    height: 100%;
+    width: 50px;
+    background-color: aqua;
+}
+.erase__config{
+    width: 100%;
+    height: 100%;
+}
+.erase__config input[type="number"]{
+    height: 100%;
+    width: 50px;
+    background-color: rgb(166, 255, 0);
+}
+.text__config{
+    width: 100%;
+    height: 100%;
+}
+.text__config input[type="number"]{
+    height: 100%;
+    width: 50px;
+    background-color: rgb(255, 0, 157);
+}

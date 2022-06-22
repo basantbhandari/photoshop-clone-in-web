@@ -6,7 +6,6 @@
 .topbar__upper{
     display: flex;
     align-items: center;
-    border: 1px solid #000;
     border-bottom: none;
     padding: 2px 5px;
 
@@ -28,14 +27,21 @@
     background-color: #000;
     cursor: pointer;
     box-shadow:  0px 0px 5px #000;
-
-
 }
 .topbar__lower{
     display: flex;
     align-items: center;
     border: 1px solid #000;
     padding: 1px 5px;
+    background-color: aqua;
+}
+.topbar__lower__left{
+    width: 50%;
+    background-color: antiquewhite;
+}
+.topbar__lower__right{
+    width: 50%;
+    background-color: rgb(0, 255, 200);
 }
 
 .topbar__lower ul{
@@ -71,11 +77,13 @@
     width: 76%;
     height: 100%;
     background-color: #000;
+    /* overflow: hidden; */
 }
 .bodycontainer__right{
     width: 20%;
     height: 100%;
     background-color: rgb(0, 102, 255);
+    overflow: scroll;
 }
 .bodycontainer__left__icon__wrapper{
     width: 100%;
@@ -92,14 +100,13 @@
     height: 40px;
     margin: 20px;
 }
-.bodycontainer__left__icon__wrapper img:hover{
+.activeImageIcon{
     cursor: pointer;
-    background-color: cadetblue;
     box-shadow:  0px 0px 5px #000;
-
 }
 .bodycontainer__right{
     box-sizing: border-box;
+    overflow-x: hidden;
 }
 .bodycontainer__right__layer__item {
     width: 100%;
@@ -113,11 +120,10 @@
     border-radius: 5px;
     margin-top: 1px;
 }
-.bodycontainer__right__layer__item:hover{
+.layer__active{
     box-shadow:  0px 0px 5px #000;
     cursor: pointer;
 }
-
 .bodycontainer__right__layer__item img{
     width: 30px;
     height: 30px;

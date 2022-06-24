@@ -8,6 +8,8 @@ var quickIconState = {
     "6":false,
     "7":false
 }
+
+
 var toolIcons = document.getElementsByClassName("myImageIcon");
 function setOnClickListenerOnQuickIcon(){
     for(let i = 0; i < toolIcons.length; i++){
@@ -16,7 +18,7 @@ function setOnClickListenerOnQuickIcon(){
             toolIcons[i].classList.add("activeImageIcon");
             resetActiveClassOnQuickIcon(i);
             updateVisibility();
-            checkForTheAuickIconClick()
+            myNewCanvas.checkForTheQuickIconClick()
         });
     }
 }

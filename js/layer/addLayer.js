@@ -20,6 +20,7 @@ class MyLayer{
         this.bodycontainer__right__control__layer__move__down.addEventListener("click",()=>{
             // move down the layer item
             console.log(`move down the layer item ${this.layerIndex}`)
+            
             });
         this.bodycontainer__right__control__layer__move__up.addEventListener("click", ()=>{
             // move up the layer item

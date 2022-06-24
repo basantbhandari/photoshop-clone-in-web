@@ -12,8 +12,6 @@ let quickIconItems = document.getElementsByClassName("myImageIcon");
 function updateVisibility(){
     for(let key in quickIconState) {
         if(quickIconState[key]){
-            console.log(key);
-            console.log(typeof key)
             showConfigOption(key);
         }       
     };
@@ -21,27 +19,31 @@ function updateVisibility(){
 
 updateVisibility()
 function showConfigOption(index){
-    switch(index){
-        case "0":
-            draw__config.style.display = "block";
-            erase__config.style.display = "none";
-            text__config.style.display = "none"
-            break;
-
-        case "1":
-            draw__config.style.display = "none";
-            erase__config.style.display = "block";
-            text__config.style.display = "none"
-            break;
-        
-        case "6":
-            draw__config.style.display = "none";
-            erase__config.style.display = "none";
-            text__config.style.display = "block"
-            break;
-        default:
-            draw__config.style.display = "none";
-            erase__config.style.display = "none";
-            text__config.style.display = "none";
+    let selected = document.getElementsByClassName("layer__active")[0];
+    if(selected != undefined){
+        switch(index){
+            case "0":
+                draw__config.style.display = "block";
+                erase__config.style.display = "none";
+                text__config.style.display = "none"
+                break;
+    
+            case "1":
+                draw__config.style.display = "none";
+                erase__config.style.display = "block";
+                text__config.style.display = "none"
+                break;
+            
+            case "6":
+                draw__config.style.display = "none";
+                erase__config.style.display = "none";
+                text__config.style.display = "block"
+                break;
+            default:
+                draw__config.style.display = "none";
+                erase__config.style.display = "none";
+                text__config.style.display = "none";
+        }
     }
+    
 }

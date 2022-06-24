@@ -1,4 +1,6 @@
 var myCanvasWrapper = document.getElementById("myCanvasWrapper");
+var downloadHandler = document.getElementById("topbar__lower__edit__Download");
+var toolIcons = document.getElementsByClassName("myImageIcon");
 
 class MyCanvas{
     constructor(index){
@@ -15,6 +17,8 @@ class MyCanvas{
         this.width = undefined;
         this.height = undefined;
         this.is_Image__add__Clicked = false
+        this.downloadHandler = downloadHandler;
+        this.toolIcons = toolIcons;
 
         this.is_drawing = false;
         this.is_texting = false;
@@ -287,12 +291,48 @@ class MyCanvas{
             this.is_Image__add__Clicked = true;
         })
         this.checkForTheQuickIconClick();
-        
+        this.downloadHandler.addEventListener("click", () => {
+            if(window.navigator.msSavedBlob){
+                window.navigator.msSavedBlob(this.canvas.msToBlob(), "canvas-image.png")
+            }else{
+                let a = document.createElement("a");
+                document.body.appendChild(a);
+                a.href = this.canvas.toDataURL();
+                a.download = "canvas-image.png";
+                a.click();
+                document.body.removeChild(a);
+            }
+           
+        });
+
+
+        this.setOnClickListenerOnQuickIcon();
+
 
 
     }
 
     
+    setOnClickListenerOnQuickIcon(){
+        for(let i = 0; i < this.toolIcons.length; i++){
+            this.toolIcons[i].addEventListener("click", () => {
+                console.log(`icon of index ${i}`)
+                this.toolIcons[i].classList.add("activeImageIcon");
+                for(let j = 0; j< this.toolIcons.length; j++){
+                    if(j == i){
+                        quickIconState[j] = true
+                        continue
+                    }
+                    if(this.toolIcons[j].classList.contains("activeImageIcon")){
+                        this.toolIcons[j].classList.remove("activeImageIcon");
+                        quickIconState[j] = false
+                    }
+                }
+                updateVisibility();
+                this.checkForTheQuickIconClick()
+            });
+        }
+    }
 
  
     
@@ -321,8 +361,10 @@ class MyCanvas{
     }
 
     checkForTheQuickIconClick(){
+        let selected = document.getElementsByClassName("layer__active")[0];
+        console.log(selected)
         for(let key in quickIconState) {
-            if(quickIconState[key]){
+            if(quickIconState[key] && (selected != undefined)){
                 console.log(key);
                 switch(key){
                     case "0":
@@ -358,6 +400,4 @@ class MyCanvas{
 
 
 }
-
-myNewCanvas = new MyCanvas(1)
 

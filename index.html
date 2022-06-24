@@ -21,7 +21,6 @@
 				<li id="topbar__upper__view">View</li>
 				<li id="topbar__upper__images">Images</li>
 				<li id="topbar__upper__layers">Layers</li>
-				<li id="topbar__upper__text">Text</li>
 				<li id="topbar__upper__filters">Filters</li>
 				<li id="topbar__upper__shapes">Shapes</li>
 				<li id="topbar__upper__help">Help</li>
@@ -33,49 +32,36 @@
 					<li>Add file</li>
 					<li>Get saved file</li>
 					<li>Save file</li>
-					<li>More</li>
 				</ul>
 				<ul id="topbar__lower__edit">
+					<li id="topbar__lower__edit__Download">Download</li>
 					<li>Merge all layers</li>
-					<li>Move up control</li>
-					<li>Move down control</li>
-					<li>Move up layer</li>
-					<li>Move down layer</li>
 				</ul>
 				<ul id="topbar__lower__view">
 					<li>View 1</li>
 					<li>View 2</li>
-					<li>View 3</li>
-					<li>View 4</li>
 				</ul>
 				<ul id="topbar__lower__images">
-					<li>Add image</li>
+					<li id="topbar__lower__images__add__image">Add image</li>
+					<form style="display: inline" id="uploadform">
+						<input type="file" id="topbar__lower__images__image__input" accept="image/jpeg, image/png, image/jpg">
+					</form>
 					<!-- resize, move, rotate -->
 				</ul>
 				<ul id="topbar__lower__layers">
 					<li id="topbar__lower__layers__add">Add layer</li>
 					<li id="topbar__lower__layers__remove">Remove layer</li>
 				</ul>
-				<ul id="topbar__lower__text">
-					<li>Add text</li>
-					<li>Remove text</li>
-					<!-- resize, move, rotate, select color -->
-				</ul>
 				<ul id="topbar__lower__filters">
 					<li>Filter 1</li>
 					<li>Filter 2</li>
-					<li>Filter 3</li>
-					<li>Filter 4</li>
 				</ul>
 				<ul id="topbar__lower__shapes">
 					<li>Add shape</li>
-					<li>Remove shape</li>
 				</ul>
 				<ul id="topbar__lower__help">
 					<li>Help 1</li>
 					<li>Help 2</li>
-					<li>Help 3</li>
-					<li>Help 4</li>
 				</ul>
 
 			</div>
@@ -84,9 +70,9 @@
 					<!-- for draw -->
 					<!-- draw size -->
 					<label for="draw__config__size">pencil size:</label>
-					<input type="number" id="draw__config__size" name="draw__config__size" min="5" max="100">
+					<input type="range" min="1" max="100" name="draw__config__size" value="20" class="slider" id="draw__config__size">
 					<!-- draw style(solid or doted) -->
-					<select id="draw__config__style">
+					<select id="draw__config__style" class="mySelectMenu">
 						<option value="solid">solid</option>
 						<option value="doted">doted</option>
 					</select>
@@ -94,7 +80,7 @@
 				<div class="erase__config">
 					<!-- for erase -->
 					<label for="erase__config__size">eraser size:</label>
-					<input type="number" id="erase__config__size" name="erase__config__size" min="5" max="100">
+					<input type="range" min="1" max="100" name="erase__config__size" value="20" class="slider" id="erase__config__size">
 					<!-- eraser size -->
 				</div>
 
@@ -102,14 +88,13 @@
 				<!-- for text -->
 					<!-- font size, font type -->
 					<label for="font__config__size">font size:</label>
-					<input type="number" id="font__config__size" name="font__config__size" min="5" max="100">
-					<select id="font__config__style">
-						<option value="serif">serif</option>
-						<option value="sansserif">sansserif</option>
-						<option value="cursive">cursive</option>
-						<option value="fantasy">fantasy</option>
-						<option value="monospace">monospace</option>
+					<input type="range" min="1" max="100" name="font__config__size" value="20" class="slider" id="font__config__size">
+					<select id="font__config__style" class="mySelectMenu">
+						<option value="lato">Lato</option>
+						<option value="arial">Arial</option>
+						<option value="helvetica">Helvetica</option>
 					</select>
+					<input type="text" class="myText" id="text__config__value" value="replace me!">
 				</div>
 			</div>
 		</div>
@@ -139,27 +124,34 @@
 			</canvas>
 		</div>
 		<div class="bodycontainer__right">
+			<div class="bodycontainer__right__control">
+				<img class="bodycontainer__right__control__layer__move__down" src="./images/icons/arrow-button-navigation-circle-down.png" alt="layer move down"/>
+				<img class="bodycontainer__right__control__layer__move__up" src="./images/icons/arrow-button-navigation-circle-up.png" alt="layer move up">
+				<img class="bodycontainer__right__control__control__move__down" src="./images/icons/down-arrow.png" alt="control move down"/>
+				<img class="bodycontainer__right__control__control__move__up" src="./images/icons/up-arrow.png" alt="control move up">
+			</div>
 			<!-- Draggable DIV -->
 			<div class="bodycontainer__right__layer__item">
-					<img src="./images/icons/eye.png" alt="icon">
-					<p>Layer 1</p>
+					<img class="bodycontainer__right__layer__item__visibilitySign" src="./images/icons/eye.png" alt="icon">
+					<p class="bodycontainer__right__layer__item__para">Layer 1</p>
 			</div>
 			<div class="bodycontainer__right__layer__item">
-					<img src="./images/icons/eye.png" alt="icon">
-					<p>Layer 2</p>
+					<img class="bodycontainer__right__layer__item__visibilitySign" src="./images/icons/eye.png" alt="icon">
+					<p class="bodycontainer__right__layer__item__para">Layer 2</p>
 			</div>
 			<div class="bodycontainer__right__layer__item">
-				<img src="./images/icons/eye.png" alt="icon">
-				<p>Layer 3</p>
+				<img class="bodycontainer__right__layer__item__visibilitySign" src="./images/icons/eye.png" alt="icon">
+				<p class="bodycontainer__right__layer__item__para">Layer 3</p>
 			</div>
 			<div class="bodycontainer__right__layer__item">
-					<img src="./images/icons/eye.png" alt="icon">
-					<p>Layer 4</p>
+				<img class="bodycontainer__right__layer__item__visibilitySign" src="./images/icons/eye.png" alt="icon">
+				<p class="bodycontainer__right__layer__item__para">Layer 4</p>
 			</div>
 		</div>
 	</section>
 	<script src="./js/main.js"></script>
 	<script src="./js/color/color.js"></script>
+	<script src="./js/quickToolConfig/config.js"></script>
 	<script src="./js/topbar/topbarEventHandler.js"></script>
 	<script src="./js/layer/addLayer.js"></script>
 	<script src="./js/layer/removeLayer.js"></script>
@@ -168,7 +160,13 @@
 	<script src="./js/configWindow/visibility.js"></script>
 	<script src="./js/canvas/canvasProperties.js"></script>
 	<script src="./js/canvas/drawingOnCanvas.js"></script>
-
+	<script src="./js/canvas//textOnCanvas.js"></script>
+	<script src="./js/canvas/add_image.js"></script>
+	<script src="./js/canvas/downloadCanvas.js"></script>
+	<script src="./js/layer/layerVisibility.js"></script>
+	<script src="./js/layer/layerControl.js"></script>
+	<script src="./js/images/matrix.js"></script>
+	<script src="./js/images/image.js"></script>
 
 </body>
 </html>

@@ -16,6 +16,7 @@ function setOnClickListenerOnQuickIcon(){
             toolIcons[i].classList.add("activeImageIcon");
             resetActiveClassOnQuickIcon(i);
             updateVisibility();
+            checkForTheAuickIconClick()
         });
     }
 }

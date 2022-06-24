@@ -8,8 +8,8 @@ addLayerButton.addEventListener("click", function() {
     let mylayer = document.createElement("div")
     mylayer.classList.add('bodycontainer__right__layer__item');
     mylayer.style.top = '40px'
-    mylayer.innerHTML = `<img src="./images/icons/eye.png" alt="icon">
-    <p>Layer ${layerItems.length + 1}</p>`
+    mylayer.innerHTML = `<img class="bodycontainer__right__layer__item__visibilitySign" src="./images/icons/eye.png" alt="icon">
+    <p class="bodycontainer__right__layer__item__para">Layer ${layerItems.length + 1}</p>`
     layerContainer.appendChild(mylayer);
     onClickFunction();
 });

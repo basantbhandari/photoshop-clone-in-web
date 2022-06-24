@@ -5,7 +5,6 @@ var topbar__upper__edit = document.getElementById("topbar__upper__edit");
 var topbar__upper__view = document.getElementById("topbar__upper__view");
 var topbar__upper__images = document.getElementById("topbar__upper__images");
 var topbar__upper__layers = document.getElementById("topbar__upper__layers");
-var topbar__upper__text = document.getElementById("topbar__upper__text");
 var topbar__upper__filters = document.getElementById("topbar__upper__filters");
 var topbar__upper__shapes = document.getElementById("topbar__upper__shapes");
 var topbar__upper__help = document.getElementById("topbar__upper__help");
@@ -17,7 +16,6 @@ var topbar__lower__edit = document.getElementById("topbar__lower__edit");
 var topbar__lower__view = document.getElementById("topbar__lower__view");
 var topbar__lower__images = document.getElementById("topbar__lower__images");
 var topbar__lower__layers = document.getElementById("topbar__lower__layers");
-var topbar__lower__text = document.getElementById("topbar__lower__text");
 var topbar__lower__filters = document.getElementById("topbar__lower__filters");
 var topbar__lower__shapes = document.getElementById("topbar__lower__shapes");
 var topbar__lower__help = document.getElementById("topbar__lower__help");
@@ -30,7 +28,6 @@ topbar__lower__edit.classList.add("topbar__upper__hide_menu");
 topbar__lower__view.classList.add("topbar__upper__hide_menu");
 topbar__lower__images.classList.add("topbar__upper__hide_menu");
 topbar__lower__layers.classList.add("topbar__upper__hide_menu");
-topbar__lower__text.classList.add("topbar__upper__hide_menu");
 topbar__lower__filters.classList.add("topbar__upper__hide_menu");
 topbar__lower__shapes.classList.add("topbar__upper__hide_menu");
 topbar__lower__help.classList.add("topbar__upper__hide_menu");
@@ -44,7 +41,6 @@ topbar__upper__file.addEventListener("click", function() {
     topbar__lower__view.classList.add("topbar__upper__hide_menu");
     topbar__lower__images.classList.add("topbar__upper__hide_menu");
     topbar__lower__layers.classList.add("topbar__upper__hide_menu");
-    topbar__lower__text.classList.add("topbar__upper__hide_menu");
     topbar__lower__filters.classList.add("topbar__upper__hide_menu");
     topbar__lower__shapes.classList.add("topbar__upper__hide_menu");
     topbar__lower__help.classList.add("topbar__upper__hide_menu");
@@ -58,7 +54,6 @@ topbar__upper__edit.addEventListener("click", function() {
     topbar__lower__view.classList.add("topbar__upper__hide_menu");
     topbar__lower__images.classList.add("topbar__upper__hide_menu");
     topbar__lower__layers.classList.add("topbar__upper__hide_menu");
-    topbar__lower__text.classList.add("topbar__upper__hide_menu");
     topbar__lower__filters.classList.add("topbar__upper__hide_menu");
     topbar__lower__shapes.classList.add("topbar__upper__hide_menu");
     topbar__lower__help.classList.add("topbar__upper__hide_menu");
@@ -72,7 +67,6 @@ topbar__upper__view.addEventListener("click", function() {
     topbar__lower__edit.classList.add("topbar__upper__hide_menu");
     topbar__lower__images.classList.add("topbar__upper__hide_menu");
     topbar__lower__layers.classList.add("topbar__upper__hide_menu");
-    topbar__lower__text.classList.add("topbar__upper__hide_menu");
     topbar__lower__filters.classList.add("topbar__upper__hide_menu");
     topbar__lower__shapes.classList.add("topbar__upper__hide_menu");
     topbar__lower__help.classList.add("topbar__upper__hide_menu");
@@ -86,7 +80,6 @@ topbar__upper__images.addEventListener("click", function() {
     topbar__lower__edit.classList.add("topbar__upper__hide_menu");
     topbar__lower__view.classList.add("topbar__upper__hide_menu");
     topbar__lower__layers.classList.add("topbar__upper__hide_menu");
-    topbar__lower__text.classList.add("topbar__upper__hide_menu");
     topbar__lower__filters.classList.add("topbar__upper__hide_menu");
     topbar__lower__shapes.classList.add("topbar__upper__hide_menu");
     topbar__lower__help.classList.add("topbar__upper__hide_menu");
@@ -100,7 +93,6 @@ topbar__upper__view.addEventListener("click", function() {
     topbar__lower__edit.classList.add("topbar__upper__hide_menu");
     topbar__lower__images.classList.add("topbar__upper__hide_menu");
     topbar__lower__layers.classList.add("topbar__upper__hide_menu");
-    topbar__lower__text.classList.add("topbar__upper__hide_menu");
     topbar__lower__filters.classList.add("topbar__upper__hide_menu");
     topbar__lower__shapes.classList.add("topbar__upper__hide_menu");
     topbar__lower__help.classList.add("topbar__upper__hide_menu");
@@ -113,24 +105,11 @@ topbar__upper__layers.addEventListener("click", function() {
     topbar__lower__edit.classList.add("topbar__upper__hide_menu");
     topbar__lower__view.classList.add("topbar__upper__hide_menu");
     topbar__lower__images.classList.add("topbar__upper__hide_menu");
-    topbar__lower__text.classList.add("topbar__upper__hide_menu");
     topbar__lower__filters.classList.add("topbar__upper__hide_menu");
     topbar__lower__shapes.classList.add("topbar__upper__hide_menu");
     topbar__lower__help.classList.add("topbar__upper__hide_menu");
     });
-topbar__upper__text.addEventListener("click", function() {
-    if( topbar__lower__text.classList.contains("topbar__upper__hide_menu") ) {
-        topbar__lower__text.classList.remove("topbar__upper__hide_menu");
-    }
-    topbar__lower__file.classList.add("topbar__upper__hide_menu");
-    topbar__lower__edit.classList.add("topbar__upper__hide_menu");
-    topbar__lower__view.classList.add("topbar__upper__hide_menu");
-    topbar__lower__images.classList.add("topbar__upper__hide_menu");
-    topbar__lower__layers.classList.add("topbar__upper__hide_menu");
-    topbar__lower__filters.classList.add("topbar__upper__hide_menu");
-    topbar__lower__shapes.classList.add("topbar__upper__hide_menu");
-    topbar__lower__help.classList.add("topbar__upper__hide_menu");
-    });
+
 topbar__upper__filters.addEventListener("click", function() {
     if( topbar__lower__filters.classList.contains("topbar__upper__hide_menu") ) {
         topbar__lower__filters.classList.remove("topbar__upper__hide_menu");
@@ -140,7 +119,6 @@ topbar__upper__filters.addEventListener("click", function() {
     topbar__lower__view.classList.add("topbar__upper__hide_menu");
     topbar__lower__images.classList.add("topbar__upper__hide_menu");
     topbar__lower__layers.classList.add("topbar__upper__hide_menu");
-    topbar__lower__text.classList.add("topbar__upper__hide_menu");
     topbar__lower__shapes.classList.add("topbar__upper__hide_menu");
     topbar__lower__help.classList.add("topbar__upper__hide_menu");
     });
@@ -153,7 +131,6 @@ topbar__upper__shapes.addEventListener("click", function() {
     topbar__lower__view.classList.add("topbar__upper__hide_menu");
     topbar__lower__images.classList.add("topbar__upper__hide_menu");
     topbar__lower__layers.classList.add("topbar__upper__hide_menu");
-    topbar__lower__text.classList.add("topbar__upper__hide_menu");
     topbar__lower__filters.classList.add("topbar__upper__hide_menu");
     topbar__lower__help.classList.add("topbar__upper__hide_menu");
     });
@@ -166,7 +143,6 @@ topbar__upper__help.addEventListener("click", function() {
     topbar__lower__view.classList.add("topbar__upper__hide_menu");
     topbar__lower__images.classList.add("topbar__upper__hide_menu");
     topbar__lower__layers.classList.add("topbar__upper__hide_menu");
-    topbar__lower__text.classList.add("topbar__upper__hide_menu");
     topbar__lower__filters.classList.add("topbar__upper__hide_menu");
     topbar__lower__shapes.classList.add("topbar__upper__hide_menu");
     });

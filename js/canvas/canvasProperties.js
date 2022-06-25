@@ -1,6 +1,7 @@
 var myCanvasWrapper = document.getElementById("myCanvasWrapper");
 var downloadHandler = document.getElementById("topbar__lower__edit__Download");
 var toolIcons = document.getElementsByClassName("myImageIcon");
+var topbar__lower__shapes__list__option = document.getElementById("topbar__lower__shapes__list__option");
 
 class MyCanvas{
     constructor(index){
@@ -9,6 +10,7 @@ class MyCanvas{
         this.canvas = document.createElement("canvas");
         this.myCanvasWrapper = myCanvasWrapper;
         this.myCanvasWrapper.style.position = "relative";
+        this.topbar__lower__shapes__list__option = topbar__lower__shapes__list__option;
         this.myCanvasWrapper.appendChild(this.canvas);
         this.canvas.height = this.myCanvasWrapper.offsetHeight - this.canvasOffset;
         this.canvas.width = this.myCanvasWrapper.offsetWidth -this.canvasOffset;
@@ -25,6 +27,12 @@ class MyCanvas{
         this.downloadHandler = downloadHandler;
         this.toolIcons = toolIcons;
 
+        this.shapeDrawLineFlag = false;
+        this.shapeDrawTriangleFlag = false;
+        this.shapeDrawRectangleFlag = false;
+        this.shapeDrawPolygonFlag = false;
+        this.ShapeDrawCircleFlag = false;
+
         this.is_drawing = false;
         this.is_texting = false;
         this.is_drawing_clicked = false;
@@ -34,6 +42,205 @@ class MyCanvas{
             this.canvas.height = this.myCanvasWrapper.offsetHeight - this.canvasOffset;
             this.canvas.width = this.myCanvasWrapper.offsetWidth -this.canvasOffset;
           }
+        // event detction to draw various shape
+          this.canvas.addEventListener("touchstart",(event)=> {
+
+            let selectedLayer = document.getElementsByClassName("layer__active")[0];
+            try {
+                let selectedLayerIndex = selectedLayer.getAttribute("lindex");
+                if( selectedLayerIndex == this.canvasIndex){
+                    let currentMousePosition = this.getMousePos(event);
+                    let currentColor = getUpdatedColor();
+                    console.log("clicked",this.shapeDrawLineFlag)
+        
+                    if(this.shapeDrawLineFlag){
+                        // lets draw line
+                        this.context.beginPath();
+                        this.context.moveTo(currentMousePosition.x, currentMousePosition.y);
+                        this.context.lineTo(prompt("Enter the final x coordinate: "), 
+                                            prompt("Enter the final y coordinate: "));
+                        this.context.lineWidth = prompt("Enter the line width: ");
+                        this.context.strokeStyle = currentColor;
+                        this.context.stroke();
+        
+                    }
+                    if(this.shapeDrawTriangleFlag){
+                        // lets draw triangle
+                        // the triangle
+                        this.context.beginPath();
+                        this.context.moveTo(currentMousePosition.x,
+                            currentMousePosition.y);
+                        this.context.lineTo(prompt("Enter the second coordinate x point: "),
+                        prompt("Enter the second coordinate y point: "));
+                        this.context.lineTo(prompt("Enter the third coordinate x point: "),
+                        prompt("Enter the third coordinate y point: "));
+                        this.context.closePath();
+                        // the fill color
+                        this.context.fillStyle = currentColor;
+                        this.context.fill();
+                        // the outline
+                        this.context.lineWidth = prompt("Enter the line width: ");;
+                        this.context.strokeStyle = currentColor
+                        this.context.stroke();
+                        
+                    }
+                    if(this.shapeDrawRectangleFlag){
+                        // lets draw rectangle
+                        this.context.beginPath();
+                        this.context.rect(currentMousePosition.x, 
+                            currentMousePosition.y,
+                             prompt("Enter the width of rectangle:"), 
+                             prompt("Enter the height of rectangle:"));
+                        this.context.fillStyle = currentColor;
+                        this.context.fill();
+                        this.context.lineWidth = prompt("Enter the line width: ");
+                        this.context.strokeStyle = currentColor;
+                        this.context.stroke();
+        
+                    }
+                    if(this.shapeDrawPolygonFlag){
+                        // lets draw polygon
+        
+                        let radius = prompt("Enter the radious of the circle: ")
+                        let sides = prompt("Enter how many edge you want: ");
+        
+                        this.regularpolygon(currentMousePosition.x, currentMousePosition.y, radius, sides, currentColor)
+                    }
+                    if(this.ShapeDrawCircleFlag){
+                        // lets draw circle
+                        this.context.beginPath();
+                        this.context.arc(currentMousePosition.x,
+                             currentMousePosition.y, 
+                             prompt("Enter radious of circle: "), 0, 2 * Math.PI, false);
+                        this.context.fillStyle = currentColor;
+                        this.context.fill();
+                        this.context.lineWidth = prompt("Enter the line width: ");
+                        this.context.strokeStyle = currentColor;
+                        this.context.stroke();
+                  
+                    }
+                }
+            } catch (error) {
+                console.log("Please work on layer");
+            }
+          
+
+
+          });
+          this.canvas.addEventListener("touchmove",(event)=> {
+              if(this.shapeDrawTriangleFlag){
+
+              }
+          });
+          this.canvas.addEventListener("touchend",(event)=> {
+            this.shapeDrawLineFlag = false;
+            this.shapeDrawTriangleFlag = false;
+            this.shapeDrawRectangleFlag = false;
+            this.shapeDrawPolygonFlag = false;
+            this.ShapeDrawCircleFlag = false;
+        });
+          this.canvas.addEventListener("mousedown",(event)=> {
+            let selectedLayer = document.getElementsByClassName("layer__active")[0];
+            try {
+                let selectedLayerIndex = selectedLayer.getAttribute("lindex");
+                if( selectedLayerIndex == this.canvasIndex){
+                    let currentMousePosition = this.getMousePos(event);
+                    let currentColor = getUpdatedColor();
+                    console.log("clicked",this.shapeDrawLineFlag)
+        
+                    if(this.shapeDrawLineFlag){
+                        // lets draw line
+                        this.context.beginPath();
+                        this.context.moveTo(currentMousePosition.x, currentMousePosition.y);
+                        this.context.lineTo(prompt("Enter the final x coordinate: "), 
+                                            prompt("Enter the final y coordinate: "));
+                        this.context.lineWidth = prompt("Enter the line width: ");
+                        this.context.strokeStyle = currentColor;
+                        this.context.stroke();
+        
+                    }
+                    if(this.shapeDrawTriangleFlag){
+                        // lets draw triangle
+                        // the triangle
+                        this.context.beginPath();
+                        this.context.moveTo(currentMousePosition.x,
+                            currentMousePosition.y);
+                        this.context.lineTo(prompt("Enter the second coordinate x point: "),
+                        prompt("Enter the second coordinate y point: "));
+                        this.context.lineTo(prompt("Enter the third coordinate x point: "),
+                        prompt("Enter the third coordinate y point: "));
+                        this.context.closePath();
+                        // the fill color
+                        this.context.fillStyle = currentColor;
+                        this.context.fill();
+                        // the outline
+                        this.context.lineWidth = prompt("Enter the line width: ");;
+                        this.context.strokeStyle = currentColor
+                        this.context.stroke();
+                        
+                    }
+                    if(this.shapeDrawRectangleFlag){
+                        // lets draw rectangle
+                        this.context.beginPath();
+                        this.context.rect(currentMousePosition.x, 
+                            currentMousePosition.y,
+                             prompt("Enter the width of rectangle:"), 
+                             prompt("Enter the height of rectangle:"));
+                        this.context.fillStyle = currentColor;
+                        this.context.fill();
+                        this.context.lineWidth = prompt("Enter the line width: ");
+                        this.context.strokeStyle = currentColor;
+                        this.context.stroke();
+        
+                    }
+                    if(this.shapeDrawPolygonFlag){
+                        // lets draw polygon
+        
+                        let radius = prompt("Enter the radious of the circle: ")
+                        let sides = prompt("Enter how many edge you want: ");
+        
+                        this.regularpolygon(currentMousePosition.x, currentMousePosition.y, radius, sides, currentColor)
+                    }
+                    if(this.ShapeDrawCircleFlag){
+                        // lets draw circle
+                        this.context.beginPath();
+                        this.context.arc(currentMousePosition.x,
+                             currentMousePosition.y, 
+                             prompt("Enter radious of circle: "), 0, 2 * Math.PI, false);
+                        this.context.fillStyle = currentColor;
+                        this.context.fill();
+                        this.context.lineWidth = prompt("Enter the line width: ");
+                        this.context.strokeStyle = currentColor;
+                        this.context.stroke();
+                  
+                    }
+                }
+            } catch (error) {
+                console.log("Please work on layer");
+            }
+          
+
+
+          });
+          this.canvas.addEventListener("mousemove",(event)=> {
+              if(this.ShapeDrawCircleFlag){
+
+              }
+          });
+          this.canvas.addEventListener("mouseup",(event)=> {
+            this.shapeDrawLineFlag = false;
+            this.shapeDrawTriangleFlag = false;
+            this.shapeDrawRectangleFlag = false;
+            this.shapeDrawPolygonFlag = false;
+            this.ShapeDrawCircleFlag = false;
+          });
+
+
+
+
+
+
+
 
         this.canvas.addEventListener("touchstart", (event)=>{
             if(this.is_text_clicked){
@@ -53,6 +260,7 @@ class MyCanvas{
     
             }
         }, false);
+        
 
         this.canvas.addEventListener("mousedown",(event)=>{
             if(this.is_text_clicked){
@@ -291,27 +499,104 @@ class MyCanvas{
         this.canvas.addEventListener("mouseup", (event)=>{},false);
         this.canvas.addEventListener("mouseout", (event)=>{},false);
         this.addImage.addEventListener("click", ()=>{
-            this.width = prompt("Image Width:");
-            this.height = prompt("Image height:");
-            this.is_Image__add__Clicked = true;
+            let selectedLayer = document.getElementsByClassName("layer__active")[0];
+            try {
+                let selectedLayerIndex = selectedLayer.getAttribute("lindex");
+                if( selectedLayerIndex == this.canvasIndex){
+                    this.width = prompt("Image Width:");
+                    this.height = prompt("Image height:");
+                    this.is_Image__add__Clicked = true;
+                }
+            } catch (error) {
+                console.log("Please work on layer");
+            }
         })
         this.checkForTheQuickIconClick();
         this.downloadHandler.addEventListener("click", () => {
-            if(window.navigator.msSavedBlob){
-                window.navigator.msSavedBlob(this.canvas.msToBlob(), "canvas-image.png")
-            }else{
-                let a = document.createElement("a");
-                document.body.appendChild(a);
-                a.href = this.canvas.toDataURL();
-                a.download = "canvas-image.png";
-                a.click();
-                document.body.removeChild(a);
+            let highligtedLayerItem = document.getElementsByClassName("layer__active")[0];
+            let highligtedLayerItemIndex = highligtedLayerItem.getAttribute("lindex")
+            if(this.canvasIndex == highligtedLayerItemIndex){
+                if(window.navigator.msSavedBlob){
+                    window.navigator.msSavedBlob(this.canvas.msToBlob(), "canvas-image.png")
+                }else{
+                    let a = document.createElement("a");
+                    document.body.appendChild(a);
+                    a.href = this.canvas.toDataURL();
+                    a.download = "canvas-image.png";
+                    a.click();
+                    document.body.removeChild(a);
+                }
             }
-           
         });
 
 
         this.setOnClickListenerOnQuickIcon();
+
+        this.topbar__lower__shapes__list__option.addEventListener("change", (event)=>{
+            console.log(`${this.topbar__lower__shapes__list__option.options[this.topbar__lower__shapes__list__option.selectedIndex].value}`)
+            let shapeValueSelected = this.topbar__lower__shapes__list__option.options[this.topbar__lower__shapes__list__option.selectedIndex].value;
+            
+            switch(shapeValueSelected){
+                case "line":
+                    // draw line
+                    this.shapeDrawLineFlag = true;
+                    this.shapeDrawTriangleFlag = false;
+                    this.shapeDrawRectangleFlag = false;
+                    this.shapeDrawPolygonFlag = false;
+                    this.ShapeDrawCircleFlag = false;
+                    console.log(this.shapeDrawLineFlag)
+                    break;
+
+                case "Triangle":
+                    // draw triangle
+                    this.shapeDrawLineFlag = false;
+                    this.shapeDrawTriangleFlag = true;
+                    this.shapeDrawRectangleFlag = false;
+                    this.shapeDrawPolygonFlag = false;
+                    this.ShapeDrawCircleFlag = false;
+
+                    break; 
+
+                case "Rectangle":
+                    // draw rectangle
+                    this.shapeDrawLineFlag = false;
+                    this.shapeDrawTriangleFlag = false;
+                    this.shapeDrawRectangleFlag = true;
+                    this.shapeDrawPolygonFlag = false;
+                    this.ShapeDrawCircleFlag = false;
+
+
+                    break;      
+                    
+                case "Polygon":
+                    // draw polygon
+                    this.shapeDrawLineFlag = false;
+                    this.shapeDrawTriangleFlag = false;
+                    this.shapeDrawRectangleFlag = false;
+                    this.shapeDrawPolygonFlag = true;
+                    this.ShapeDrawCircleFlag = false;
+
+                    break;
+                case "Circle":
+                    // draw polygon
+                    this.shapeDrawLineFlag = false;
+                    this.shapeDrawTriangleFlag = false;
+                    this.shapeDrawRectangleFlag = false;
+                    this.shapeDrawPolygonFlag = false;
+                    this.ShapeDrawCircleFlag = true;
+
+                    break;
+                default:
+                    this.shapeDrawLineFlag = false;
+                    this.shapeDrawTriangleFlag = false;
+                    this.shapeDrawRectangleFlag = false;
+                    this.shapeDrawPolygonFlag = false;
+                    this.ShapeDrawCircleFlag =false;
+
+            }
+
+
+        })
 
 
 
@@ -397,7 +682,24 @@ class MyCanvas{
             }       
         };
 
-}
+    }
+    regularpolygon(x, y, radius, sides,currentColor ) {
+        if (sides < 3) return;
+        this.context.beginPath();
+        var a = ((Math.PI * 2)/sides);
+        this.context.translate(x,y);
+        this.context.moveTo(radius,0);
+        for (var i = 1; i < sides; i++) {
+          this.context.lineTo(radius*Math.cos(a*i),radius*Math.sin(a*i));
+        }
+        this.context.closePath();
+        this.context.fillStyle = currentColor;
+        this.context.fill()
+        this.context.lineWidth = prompt("Enter the line width: ");
+        this.context.strokeStyle = currentColor;
+        this.context.stroke();
+
+      }
 
     
 

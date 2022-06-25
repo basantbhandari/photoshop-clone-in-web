@@ -35,7 +35,7 @@
 				</ul>
 				<ul id="topbar__lower__edit">
 					<li id="topbar__lower__edit__Download">Download</li>
-					<li>Merge all layers</li>
+					<li id="topbar__lower__edit__Merge">Merge all layers and download</li>
 				</ul>
 				<ul id="topbar__lower__view">
 					<li>View 1</li>
@@ -57,7 +57,16 @@
 					<li>Filter 2</li>
 				</ul>
 				<ul id="topbar__lower__shapes">
-					<li>Add shape</li>
+					<li>
+						<select id = "topbar__lower__shapes__list__option" >  
+							<option> ---Choose shape--- </option> 
+							<option value="line"> line </option> 
+							<option value="Triangle"> Triangle </option>  
+							<option value="Rectangle"> Rectangle </option>  
+							<option value="Polygon"> Polygon </option>  
+							<option value="Circle"> Circle </option>
+						</select>  
+					</li>
 				</ul>
 				<ul id="topbar__lower__help">
 					<li>Help 1</li>
@@ -90,9 +99,9 @@
 					<label for="font__config__size">font size:</label>
 					<input type="range" min="1" max="100" name="font__config__size" value="20" class="slider" id="font__config__size">
 					<select id="font__config__style" class="mySelectMenu">
-						<option value="lato">Lato</option>
-						<option value="arial">Arial</option>
-						<option value="helvetica">Helvetica</option>
+						<option value="Calibri">Calibri</option>
+						<option value="Arial">Arial</option>
+						<option value="Helvetica">Helvetica</option>
 					</select>
 					<input type="text" class="myText" id="text__config__value" value="replace me!">
 				</div>

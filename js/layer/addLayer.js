@@ -15,31 +15,7 @@ class MyLayer{
         this.myLayerCanvas = new MyCanvas(this.layerIndex); 
         this.myLayerCanvas.canvas.position ="absolute";
         this.layerItemEye = document.getElementsByClassName("bodycontainer__right__layer__item__visibilitySign");
-        this.bodycontainer__right__control__layer__move__down = document.getElementsByClassName("bodycontainer__right__control__layer__move__down")[0];
-        this.bodycontainer__right__control__layer__move__up = document.getElementsByClassName("bodycontainer__right__control__layer__move__up")[0];
-        this.bodycontainer__right__control__control__move__down = document.getElementsByClassName("bodycontainer__right__control__control__move__down")[0];
-        this.bodycontainer__right__control__control__move__up = document.getElementsByClassName("bodycontainer__right__control__control__move__up")[0];
-        this.bodycontainer__right__control__layer__move__down.addEventListener("click",()=>{
-            // move down the layer item
-            console.log(`move down the layer item ${this.layerIndex}`)
-            
-            });
-        this.bodycontainer__right__control__layer__move__up.addEventListener("click", ()=>{
-            // move up the layer item
-            console.log(`move up the layer item ${this.layerIndex}`)
 
-            });
-        
-        this.bodycontainer__right__control__control__move__down.addEventListener("click", ()=>{
-            // move down the layer selection
-            console.log(`move down the layer selection ${this.layerIndex}`)
-
-            });
-        this.bodycontainer__right__control__control__move__up.addEventListener("click", ()=>{
-            // move up the layer selection
-            console.log(`move up the layer selection ${this.layerIndex}`)
-
-            });
         this.removeLayerButton.addEventListener("click", ()=>{
             let layerItems = document.getElementsByClassName("bodycontainer__right__layer__item");
             for(let i = 0; i< layerItems.length; i++){

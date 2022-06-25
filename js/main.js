@@ -3,7 +3,7 @@ var body = document.getElementsByTagName("body")[0];
 var newFile = document.getElementById("newFile")
 var layerItems = document.getElementsByClassName("bodycontainer__right__layer__item");
 var addLayerButton = document.getElementById("topbar__lower__layers__add");
-
+var myCanvasWrapper = document.getElementById("myCanvasWrapper");
 
 class Main{
     constructor(index){
@@ -15,8 +15,12 @@ class Main{
         this.layerArray = [];
         this.newFile = newFile;
         this.bgFlag = false;
+        this.myCanvasWrapper = myCanvasWrapper;
         this.layerItems = layerItems;
         this.addLayerButton = addLayerButton;
+        this.myCanvasWrapper.style.background = "cyan";
+        this.myCanvasWrapper.innerHTML = `<h1 style="text-align: center;padding-top:40%">Please add file first</h1>`;
+
         this.addLayerButton.addEventListener("click", () => {
             console.log("layer button clicked");
             if(this.bgFlag){
@@ -29,7 +33,8 @@ class Main{
         });
         this.newFile.addEventListener("click", (event)=>{
             this.bgFlag = true
-            this.body.style.background = "black"
+            this.myCanvasWrapper.innerHTML = "";
+            this.myCanvasWrapper.style.background = "white"
         })
        
         

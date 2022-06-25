@@ -8,14 +8,19 @@ class MyCanvas{
         this.canvasOffset = 4;
         this.canvas = document.createElement("canvas");
         this.myCanvasWrapper = myCanvasWrapper;
+        this.myCanvasWrapper.style.position = "relative";
         this.myCanvasWrapper.appendChild(this.canvas);
         this.canvas.height = this.myCanvasWrapper.offsetHeight - this.canvasOffset;
         this.canvas.width = this.myCanvasWrapper.offsetWidth -this.canvasOffset;
-        this.canvas.style.background = 'white';
+        this.canvas.classList.add("eachCanvasItem");
+        this.canvas.setAttribute("cindex",this.canvasIndex)
+        this.canvas.style.background = `white`;
+        this.canvas.style.position = "absolute";
         this.context = this.canvas.getContext("2d");
         this.addImage = document.getElementById("topbar__lower__images__add__image");
         this.width = undefined;
         this.height = undefined;
+        this.myoffset = "54"
         this.is_Image__add__Clicked = false
         this.downloadHandler = downloadHandler;
         this.toolIcons = toolIcons;
@@ -88,10 +93,10 @@ class MyCanvas{
             this.is_drawing = true;
             this.context.beginPath();
             this.context.moveTo(
-                event.clientX - this.canvas.offsetLeft, 
-                event.clientY - this.canvas.offsetTop
+                event.clientX - this.canvas.offsetLeft - this.myoffset, 
+                event.clientY - this.canvas.offsetTop - this.myoffset
             );
-            console.log(event.clientX - this.canvas.offsetLeft, event.clientY - this.canvas.offsetTop);
+            console.log(event.clientX - this.canvas.offsetLeft - this.myoffset, event.clientY - this.canvas.offsetTop - this.myoffset);
             event.preventDefault();
             console.log("start drawing");    
         }, false);
@@ -103,10 +108,10 @@ class MyCanvas{
     
             if( this.is_drawing && this.is_drawing_clicked){
                 this.context.lineTo(
-                    event.clientX - this.canvas.offsetLeft, 
-                    event.clientY - this.canvas.offsetTop
+                    event.clientX - this.canvas.offsetLeft - this.myoffset, 
+                    event.clientY - this.canvas.offsetTop -this.myoffset
                 );
-                console.log(event.clientX - this.canvas.offsetLeft, event.clientY - this.canvas.offsetTop);
+                console.log(event.clientX - this.canvas.offsetLeft -this.myoffset , event.clientY - this.canvas.offsetTop -this.myoffset);
                 this.context.strokeStyle = getUpdatedColor();
                 this.context.lineWidth = drawConfig["pencilsize"];
                 if(drawConfig["style"] == "doted"){
@@ -123,10 +128,10 @@ class MyCanvas{
             // eraser fuctionality
             if(this.is_drawing && this.is_eraser_clicked){
                 this.context.lineTo(
-                    event.clientX - this.canvas.offsetLeft, 
-                    event.clientY - this.canvas.offsetTop
+                    event.clientX - this.canvas.offsetLeft - this.myoffset, 
+                    event.clientY - this.canvas.offsetTop - this.myoffset
                 );
-                console.log(event.clientX - this.canvas.offsetLeft, event.clientY - this.canvas.offsetTop);
+                console.log(event.clientX - this.canvas.offsetLeft - this.myoffset, event.clientY - this.canvas.offsetTop -this.myoffset);
                 this.context.strokeStyle = "white";
                 this.context.lineWidth = eraserConfig["size"]
                 this.context.setLineDash([]);
@@ -143,10 +148,10 @@ class MyCanvas{
             this.is_drawing = true;
             this.context.beginPath();
             this.context.moveTo(
-                event.clientX - this.canvas.offsetLeft, 
-                event.clientY - this.canvas.offsetTop
+                event.clientX - this.canvas.offsetLeft -this.myoffset , 
+                event.clientY - this.canvas.offsetTop - this.myoffset
             );
-            console.log(event.clientX - this.canvas.offsetLeft, event.clientY - this.canvas.offsetTop);
+            console.log(event.clientX - this.canvas.offsetLeft - this.myoffset, event.clientY - this.canvas.offsetTop- this.myoffset);
             event.preventDefault();
             console.log("start drawing");    
         }, false);
@@ -158,10 +163,10 @@ class MyCanvas{
     
             if( this.is_drawing && this.is_drawing_clicked){
                 this.context.lineTo(
-                    event.clientX - this.canvas.offsetLeft, 
-                    event.clientY - this.canvas.offsetTop
+                    event.clientX - this.canvas.offsetLeft - this.myoffset , 
+                    event.clientY - this.canvas.offsetTop - this.myoffset
                 );
-                console.log(event.clientX - this.canvas.offsetLeft, event.clientY - this.canvas.offsetTop);
+                console.log(event.clientX - this.canvas.offsetLeft - this.myoffset, event.clientY - this.canvas.offsetTop -this.myoffset);
                 this.context.strokeStyle = getUpdatedColor();
                 this.context.lineWidth = drawConfig["pencilsize"];
                 if(drawConfig["style"] == "doted"){
@@ -178,10 +183,10 @@ class MyCanvas{
             // eraser fuctionality
             if(this.is_drawing && this.is_eraser_clicked){
                 this.context.lineTo(
-                    event.clientX - this.canvas.offsetLeft, 
-                    event.clientY - this.canvas.offsetTop
+                    event.clientX - this.canvas.offsetLeft -this.myoffset, 
+                    event.clientY - this.canvas.offsetTop -this.myoffset
                 );
-                console.log(event.clientX - this.canvas.offsetLeft, event.clientY - this.canvas.offsetTop);
+                console.log(event.clientX - this.canvas.offsetLeft -this.myoffset, event.clientY - this.canvas.offsetTop -this.myoffset);
                 this.context.strokeStyle = "white";
                 this.context.lineWidth = eraserConfig["size"]
                 this.context.setLineDash([]);

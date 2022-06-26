@@ -5,12 +5,13 @@ class MyLayer{
         this.myLayer = document.createElement("div")
         this.myLayer.classList.add("bodycontainer__right__layer__item");
         this.myLayer.setAttribute("lindex",this.layerIndex);
+        this.myLayer.setAttribute("layerPriorityOrder",this.layerIndex);
         this.myLayer.style.top = '40px';
         // open eye by default
         this.toggle = true;
         this.layerContainer = document.getElementsByClassName("bodycontainer__right")[0]
         this.myLayer.innerHTML = `<img class="bodycontainer__right__layer__item__visibilitySign" src="./images/icons/eye.png" alt="icon">
-        <p class="bodycontainer__right__layer__item__para">Layer ${this.layerIndex}</p>`
+        <p class="bodycontainer__right__layer__item__para">Layer ${this.myLayer.getAttribute("layerPriorityOrder")}</p>`
         this.layerContainer.appendChild(this.myLayer);
         this.myLayerCanvas = new MyCanvas(this.layerIndex); 
         this.myLayerCanvas.canvas.position ="absolute";

@@ -1,16 +1,12 @@
-var myCanvasWrapper = document.getElementById("myCanvasWrapper");
-var downloadHandler = document.getElementById("topbar__lower__edit__Download");
-var toolIcons = document.getElementsByClassName("myImageIcon");
-var topbar__lower__shapes__list__option = document.getElementById("topbar__lower__shapes__list__option");
-
 class MyCanvas{
     constructor(index){
+        this.globalCoordinateObjectHistry = {}
         this.canvasIndex = index || 0;
         this.canvasOffset = 4;
         this.canvas = document.createElement("canvas");
-        this.myCanvasWrapper = myCanvasWrapper;
+        this.myCanvasWrapper = document.getElementById("myCanvasWrapper");
         this.myCanvasWrapper.style.position = "relative";
-        this.topbar__lower__shapes__list__option = topbar__lower__shapes__list__option;
+        this.topbar__lower__shapes__list__option = document.getElementById("topbar__lower__shapes__list__option");
         this.myCanvasWrapper.appendChild(this.canvas);
         this.canvas.height = this.myCanvasWrapper.offsetHeight - this.canvasOffset;
         this.canvas.width = this.myCanvasWrapper.offsetWidth -this.canvasOffset;
@@ -22,10 +18,15 @@ class MyCanvas{
         this.addImage = document.getElementById("topbar__lower__images__add__image");
         this.width = undefined;
         this.height = undefined;
-        this.myoffset = "54"
+        this.myoffset = "54";
         this.is_Image__add__Clicked = false
-        this.downloadHandler = downloadHandler;
-        this.toolIcons = toolIcons;
+        this.downloadHandler = document.getElementById("topbar__lower__edit__Download");
+        this.toolIcons = document.getElementsByClassName("myImageIcon");
+        this.dwidth = undefined;
+        this.dheight = undefined;
+        this.swidth = undefined;
+        this.sheight = undefined;
+
 
         this.shapeDrawLineFlag = false;
         this.shapeDrawTriangleFlag = false;
@@ -38,107 +39,44 @@ class MyCanvas{
         this.is_drawing_clicked = false;
         this.is_eraser_clicked = false;
         this.is_text_clicked = false;
+        this.is_crop_clicked = false;
+
         window.onresize = () => {
             this.canvas.height = this.myCanvasWrapper.offsetHeight - this.canvasOffset;
             this.canvas.width = this.myCanvasWrapper.offsetWidth -this.canvasOffset;
           }
+        this.checkForTheQuickIconClick();
+        this.setOnClickListenerOnQuickIcon();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         // event detction to draw various shape
-          this.canvas.addEventListener("touchstart",(event)=> {
-
-            let selectedLayer = document.getElementsByClassName("layer__active")[0];
-            try {
-                let selectedLayerIndex = selectedLayer.getAttribute("lindex");
-                if( selectedLayerIndex == this.canvasIndex){
-                    let currentMousePosition = this.getMousePos(event);
-                    let currentColor = getUpdatedColor();
-                    console.log("clicked",this.shapeDrawLineFlag)
-        
-                    if(this.shapeDrawLineFlag){
-                        // lets draw line
-                        this.context.beginPath();
-                        this.context.moveTo(currentMousePosition.x, currentMousePosition.y);
-                        this.context.lineTo(prompt("Enter the final x coordinate: "), 
-                                            prompt("Enter the final y coordinate: "));
-                        this.context.lineWidth = prompt("Enter the line width: ");
-                        this.context.strokeStyle = currentColor;
-                        this.context.stroke();
-        
-                    }
-                    if(this.shapeDrawTriangleFlag){
-                        // lets draw triangle
-                        // the triangle
-                        this.context.beginPath();
-                        this.context.moveTo(currentMousePosition.x,
-                            currentMousePosition.y);
-                        this.context.lineTo(prompt("Enter the second coordinate x point: "),
-                        prompt("Enter the second coordinate y point: "));
-                        this.context.lineTo(prompt("Enter the third coordinate x point: "),
-                        prompt("Enter the third coordinate y point: "));
-                        this.context.closePath();
-                        // the fill color
-                        this.context.fillStyle = currentColor;
-                        this.context.fill();
-                        // the outline
-                        this.context.lineWidth = prompt("Enter the line width: ");;
-                        this.context.strokeStyle = currentColor
-                        this.context.stroke();
-                        
-                    }
-                    if(this.shapeDrawRectangleFlag){
-                        // lets draw rectangle
-                        this.context.beginPath();
-                        this.context.rect(currentMousePosition.x, 
-                            currentMousePosition.y,
-                             prompt("Enter the width of rectangle:"), 
-                             prompt("Enter the height of rectangle:"));
-                        this.context.fillStyle = currentColor;
-                        this.context.fill();
-                        this.context.lineWidth = prompt("Enter the line width: ");
-                        this.context.strokeStyle = currentColor;
-                        this.context.stroke();
-        
-                    }
-                    if(this.shapeDrawPolygonFlag){
-                        // lets draw polygon
-        
-                        let radius = prompt("Enter the radious of the circle: ")
-                        let sides = prompt("Enter how many edge you want: ");
-        
-                        this.regularpolygon(currentMousePosition.x, currentMousePosition.y, radius, sides, currentColor)
-                    }
-                    if(this.ShapeDrawCircleFlag){
-                        // lets draw circle
-                        this.context.beginPath();
-                        this.context.arc(currentMousePosition.x,
-                             currentMousePosition.y, 
-                             prompt("Enter radious of circle: "), 0, 2 * Math.PI, false);
-                        this.context.fillStyle = currentColor;
-                        this.context.fill();
-                        this.context.lineWidth = prompt("Enter the line width: ");
-                        this.context.strokeStyle = currentColor;
-                        this.context.stroke();
-                  
-                    }
-                }
-            } catch (error) {
-                console.log("Please work on layer");
-            }
-          
-
-
-          });
-          this.canvas.addEventListener("touchmove",(event)=> {
-              if(this.shapeDrawTriangleFlag){
-
-              }
-          });
-          this.canvas.addEventListener("touchend",(event)=> {
-            this.shapeDrawLineFlag = false;
-            this.shapeDrawTriangleFlag = false;
-            this.shapeDrawRectangleFlag = false;
-            this.shapeDrawPolygonFlag = false;
-            this.ShapeDrawCircleFlag = false;
-        });
           this.canvas.addEventListener("mousedown",(event)=> {
             let selectedLayer = document.getElementsByClassName("layer__active")[0];
             try {
@@ -162,13 +100,11 @@ class MyCanvas{
                     if(this.shapeDrawTriangleFlag){
                         // lets draw triangle
                         // the triangle
+                        let size = prompt("Enter the size of the triangle: ")
                         this.context.beginPath();
-                        this.context.moveTo(currentMousePosition.x,
-                            currentMousePosition.y);
-                        this.context.lineTo(prompt("Enter the second coordinate x point: "),
-                        prompt("Enter the second coordinate y point: "));
-                        this.context.lineTo(prompt("Enter the third coordinate x point: "),
-                        prompt("Enter the third coordinate y point: "));
+                        this.context.moveTo(currentMousePosition.x + `${size}`, currentMousePosition.y + `${size}`);
+                        this.context.lineTo(currentMousePosition.x + `${size}`, currentMousePosition.y + `${size}`);
+                        this.context.lineTo(currentMousePosition.x + `${size}`, currentMousePosition.y + `${size}`);
                         this.context.closePath();
                         // the fill color
                         this.context.fillStyle = currentColor;
@@ -218,7 +154,8 @@ class MyCanvas{
             } catch (error) {
                 console.log("Please work on layer");
             }
-          
+            var currentMousePosition = this.getMousePos(event);
+            console.log("clicked",currentMousePosition)
 
 
           });
@@ -233,6 +170,8 @@ class MyCanvas{
             this.shapeDrawRectangleFlag = false;
             this.shapeDrawPolygonFlag = false;
             this.ShapeDrawCircleFlag = false;
+            var currentMousePosition = this.getMousePos(event);
+            console.log("clicked",currentMousePosition)
           });
 
 
@@ -242,26 +181,17 @@ class MyCanvas{
 
 
 
-        this.canvas.addEventListener("touchstart", (event)=>{
-            if(this.is_text_clicked){
-                this.is_texting = true
-                let textConfig = getTextInformation();
-                let currentMousePosition = this.getMousePos(event);
-                console.log(textConfig);
-                console.log(currentMousePosition)
-                this.context.font = `${textConfig["fontsize"]}px ${textConfig["fontstyle"]}`;
-                this.context.strokeStyle = getUpdatedColor();
-                this.context.strokeText(textConfig["text"], currentMousePosition.x, currentMousePosition.y);
-            }
-        }, false);
 
-        this.canvas.addEventListener("touchmove", (event)=>{
-            if(this.is_texting){
-    
-            }
-        }, false);
-        
 
+
+
+
+
+
+
+
+
+        // for implementing text on the canvas
         this.canvas.addEventListener("mousedown",(event)=>{
             if(this.is_text_clicked){
                 this.is_texting = true
@@ -281,77 +211,22 @@ class MyCanvas{
             }
         }, false);
 
-        this.canvas.addEventListener("touchend", (event)=>{
-            if(this.is_text_clicked && this.is_texting ){
-                this.is_texting = false
-            }
-        },false);
         this.canvas.addEventListener("mouseup", (event)=>{
             if(this.is_text_clicked && this.is_texting ){
                 this.is_texting = false
             }
         },false);
-        this.canvas.addEventListener("mouseout", (event)=>{
-            if(this.is_text_clicked && this.is_texting ){
-                this.is_texting = false
-            }
-        },false);
 
-        this.canvas.addEventListener("touchstart", (event)=>{
-            this.is_drawing = true;
-            this.context.beginPath();
-            this.context.moveTo(
-                event.clientX - this.canvas.offsetLeft - this.myoffset, 
-                event.clientY - this.canvas.offsetTop - this.myoffset
-            );
-            console.log(event.clientX - this.canvas.offsetLeft - this.myoffset, event.clientY - this.canvas.offsetTop - this.myoffset);
-            event.preventDefault();
-            console.log("start drawing");    
-        }, false);
 
-        this.canvas.addEventListener("touchmove", 
-        (event)=>{
-            let drawConfig = getDrawingInformation()
-            let eraserConfig =getEraserInformation()
-    
-            if( this.is_drawing && this.is_drawing_clicked){
-                this.context.lineTo(
-                    event.clientX - this.canvas.offsetLeft - this.myoffset, 
-                    event.clientY - this.canvas.offsetTop -this.myoffset
-                );
-                console.log(event.clientX - this.canvas.offsetLeft -this.myoffset , event.clientY - this.canvas.offsetTop -this.myoffset);
-                this.context.strokeStyle = getUpdatedColor();
-                this.context.lineWidth = drawConfig["pencilsize"];
-                if(drawConfig["style"] == "doted"){
-                    this.context.setLineDash([drawConfig["pencilsize"]*1.5,drawConfig["pencilsize"]*1.2]);
-                }else{
-                    this.context.setLineDash([]);
-                }
-                this.context.lineCap = "round";
-                this.context.lineJoin = "round";
-                this.context.stroke();
-                console.log("draw drawing");
-            }
-    
-            // eraser fuctionality
-            if(this.is_drawing && this.is_eraser_clicked){
-                this.context.lineTo(
-                    event.clientX - this.canvas.offsetLeft - this.myoffset, 
-                    event.clientY - this.canvas.offsetTop - this.myoffset
-                );
-                console.log(event.clientX - this.canvas.offsetLeft - this.myoffset, event.clientY - this.canvas.offsetTop -this.myoffset);
-                this.context.strokeStyle = "white";
-                this.context.lineWidth = eraserConfig["size"]
-                this.context.setLineDash([]);
-                this.context.lineCap = "round";
-                this.context.lineJoin = "round";
-                this.context.stroke();
-                console.log("draw drawing");
-            }
-    
-        
-        }, false);
 
+
+
+
+
+
+
+
+        // implementing the drawing on canvas
         this.canvas.addEventListener("mousedown", (event)=>{
             this.is_drawing = true;
             this.context.beginPath();
@@ -364,8 +239,7 @@ class MyCanvas{
             console.log("start drawing");    
         }, false);
 
-        this.canvas.addEventListener("mousemove", 
-        (event)=>{
+        this.canvas.addEventListener("mousemove", (event)=>{
             let drawConfig = getDrawingInformation()
             let eraserConfig =getEraserInformation()
     
@@ -407,16 +281,6 @@ class MyCanvas{
         
         }, false);
 
-        this.canvas.addEventListener("touchend", (event)=>{
-            if(this.is_drawing){
-                this.context.stroke();
-                this.context.closePath();
-                this.is_drawing = false
-            }
-            event.preventDefault();
-
-        },false);
-
         this.canvas.addEventListener("mouseup",  (event)=>{
             if(this.is_drawing){
                 this.context.stroke();
@@ -427,50 +291,26 @@ class MyCanvas{
 
         },false);
 
-        this.canvas.addEventListener("mouseout", (event)=>{
-            if(this.is_drawing){
-                this.context.stroke();
-                this.context.closePath();
-                this.is_drawing = false
-            }
-            event.preventDefault();
 
-        },false);
 
-        this.canvas.addEventListener("touchstart", (event)=>{
-        if(this.is_Image__add__Clicked){
-            var currentMousePosition = this.getMousePos( event)
-            var formdata = document.getElementById("topbar__lower__images__image__input");
-            let uplImg = formdata.files[0];
-            //check for file type
-            if (uplImg.type.substr(0,5) !== "image"){
-                console.error("Only images");
-                return;
-            }
-                //convert uploaded image to base 64 and append it to Div
-            this.getBase64(uplImg).then(
-                data => {
-                    console.log(data);
-                    let imgObj = new Image()
-                    imgObj.onload = () => {
-                        this.context.drawImage(imgObj, currentMousePosition.x,
-                            currentMousePosition.y, width, height)
-                    }
-                    imgObj.src = data
-                    this.is_Image__add__Clicked = false
-                })
-            }
-        }, false);
 
-        this.canvas.addEventListener("touchmove", (event)=>{
 
-        }, false);
 
+
+
+
+
+
+
+
+    // implement the addition of image on canvas
         this.canvas.addEventListener("mousedown", (event)=>{
-            if(this.is_Image__add__Clicked){
+            if(this.is_Image__add__Clicked && !this.is_crop_clicked){
                 var currentMousePosition = this.getMousePos( event)
                 var formdata = document.getElementById("topbar__lower__images__image__input");
                 let uplImg = formdata.files[0];
+                console.log("image addition is done")
+
                 //check for file type
                 if (uplImg.type.substr(0,5) !== "image"){
                     console.error("Only images");
@@ -494,10 +334,84 @@ class MyCanvas{
         this.canvas.addEventListener("mousemove", (event)=>{
 
         }, false);
-    
-        this.canvas.addEventListener("touchend", (event)=>{},false);
         this.canvas.addEventListener("mouseup", (event)=>{},false);
-        this.canvas.addEventListener("mouseout", (event)=>{},false);
+
+
+
+
+
+
+
+
+
+
+
+    // to implement crop functionality
+      this.canvas.addEventListener("mousedown", (event)=>{
+        if(this.is_crop_clicked && !this.is_Image__add__Clicked){
+            var currentMousePosition = this.getMousePos( event)
+            var formdata = document.getElementById("topbar__lower__images__image__input");
+            let uplCropedImage = formdata.files[0];
+            //check for file type
+
+
+            if (uplCropedImage.type.substr(0,5) !== "image"){
+                console.error("Only images");
+                return;
+            }
+                //convert uploaded image to base 64 and append it to Div
+            this.getBase64(uplCropedImage).then(
+                data => {
+                    console.log(data);
+                    let imgObj = new Image()
+                    imgObj.onload = () => {
+                        this.context.drawImage(imgObj, currentMousePosition.x,
+                            currentMousePosition.y, this.swidth, this.sheight, currentMousePosition.x, currentMousePosition.y ,  this.dwidth, this.dheight)
+                            console.log("croped")
+                        }
+                    imgObj.src = data
+                    this.is_crop_clicked = false
+                    console.log("image crop is done")
+
+                })
+        }
+    }, false);
+
+    this.canvas.addEventListener("mousemove", (event)=>{
+
+    }, false);
+
+    this.canvas.addEventListener("mouseup", (event)=>{},false);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         this.addImage.addEventListener("click", ()=>{
             let selectedLayer = document.getElementsByClassName("layer__active")[0];
             try {
@@ -511,7 +425,17 @@ class MyCanvas{
                 console.log("Please work on layer");
             }
         })
-        this.checkForTheQuickIconClick();
+
+
+
+
+
+
+
+
+
+
+
         this.downloadHandler.addEventListener("click", () => {
             let highligtedLayerItem = document.getElementsByClassName("layer__active")[0];
             let highligtedLayerItemIndex = highligtedLayerItem.getAttribute("lindex")
@@ -530,40 +454,37 @@ class MyCanvas{
         });
 
 
-        this.setOnClickListenerOnQuickIcon();
 
         this.topbar__lower__shapes__list__option.addEventListener("change", (event)=>{
             console.log(`${this.topbar__lower__shapes__list__option.options[this.topbar__lower__shapes__list__option.selectedIndex].value}`)
             let shapeValueSelected = this.topbar__lower__shapes__list__option.options[this.topbar__lower__shapes__list__option.selectedIndex].value;
-            
             switch(shapeValueSelected){
                 case "line":
                     // draw line
-                    this.shapeDrawLineFlag = true;
-                    this.shapeDrawTriangleFlag = false;
-                    this.shapeDrawRectangleFlag = false;
-                    this.shapeDrawPolygonFlag = false;
-                    this.ShapeDrawCircleFlag = false;
-                    console.log(this.shapeDrawLineFlag)
+                        this.shapeDrawLineFlag = true;
+                        this.shapeDrawTriangleFlag = false;
+                        this.shapeDrawRectangleFlag = false;
+                        this.shapeDrawPolygonFlag = false;
+                        this.ShapeDrawCircleFlag = false;
                     break;
 
                 case "Triangle":
                     // draw triangle
-                    this.shapeDrawLineFlag = false;
-                    this.shapeDrawTriangleFlag = true;
-                    this.shapeDrawRectangleFlag = false;
-                    this.shapeDrawPolygonFlag = false;
-                    this.ShapeDrawCircleFlag = false;
+                        this.shapeDrawLineFlag = false;
+                        this.shapeDrawTriangleFlag = true;
+                        this.shapeDrawRectangleFlag = false;
+                        this.shapeDrawPolygonFlag = false;
+                        this.ShapeDrawCircleFlag = false;
 
                     break; 
 
                 case "Rectangle":
                     // draw rectangle
-                    this.shapeDrawLineFlag = false;
-                    this.shapeDrawTriangleFlag = false;
-                    this.shapeDrawRectangleFlag = true;
-                    this.shapeDrawPolygonFlag = false;
-                    this.ShapeDrawCircleFlag = false;
+                        this.shapeDrawLineFlag = false;
+                        this.shapeDrawTriangleFlag = false;
+                        this.shapeDrawRectangleFlag = true;
+                        this.shapeDrawPolygonFlag = false;
+                        this.ShapeDrawCircleFlag = false;
 
 
                     break;      
@@ -661,22 +582,38 @@ class MyCanvas{
                     this.is_drawing_clicked = true;
                     this.is_eraser_clicked = false;
                     this.is_text_clicked = false;
+                    this.is_crop_clicked = false;
                     break;
                 case "1":
                     this.is_drawing_clicked = false;
                     this.is_eraser_clicked = true;
                     this.is_text_clicked = false;
+                    this.is_crop_clicked = false;
                     break;
                 case "6":
                     this.is_eraser_clicked = false;
                     this.is_drawing_clicked = false;
                     this.is_text_clicked = true;
+                    this.is_crop_clicked = false;
+                    break;
+                
+                case "7":
+                    this.is_drawing_clicked = false;
+                    this.is_eraser_clicked = false;
+                    this.is_text_clicked = false;
+                    this.is_crop_clicked = true;
+                    this.swidth = prompt("Enter the original image width: ")
+                    this.sheight = prompt("Enter the original image height: ")
+                    this.dwidth = prompt("Enter the croped image width: ")
+                    this.dheight = prompt("Enter the croped image height: ")
                     break;
                 
                 default:
                     this.is_drawing_clicked = false;
                     this.is_eraser_clicked = false;
                     this.is_text_clicked = false;
+                    this.is_crop_clicked = false;
+
                     
             }
             }       

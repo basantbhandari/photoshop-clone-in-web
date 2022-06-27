@@ -31,4 +31,11 @@ function getTextInformation(){
     }
 }
 
+// information for rotation
+var myRotationAngle = document.getElementById("rotate__config__angle");
+function getRotationInformation(){
+    return {
+        "angle": myRotationAngle.value
+    }
+}
 

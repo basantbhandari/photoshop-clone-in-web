@@ -13,20 +13,34 @@
 }
 /* styling the config div */
 .draw__config{
-    width: 100%;
+    width: fit-content;
     height: 100%;
+    border: 1px solid black;
+    padding-left: 20px;
+    font-size: 1rem;
+
+
 }
 label{
     color: black;
     font-style:bold;
 }
 .erase__config{
-    width: 100%;
+    width: fit-content;
     height: 100%;
+    border: 1px solid black;
+    padding-left: 20px;
+    font-size: 1rem;
+
+
 }
 .text__config{
-    width: 100%;
+    width: fit-content;
     height: 100%;
+    border: 1px solid black;
+    padding-left: 20px;
+    font-size: 1rem;
+
 }
 input[type="range"]{
     width: 200px;
@@ -43,4 +57,8 @@ input[type="range"]{
     padding: 2px;
     appearance: none;
     border: none;
+}
+
+#myCanvasWrapper{
+    box-shadow: inset 0px 0px 50px #E2D1F9;
 }

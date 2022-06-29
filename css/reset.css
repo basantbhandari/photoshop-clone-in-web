@@ -4,7 +4,13 @@
 }
 
 body{
-    font-family: 'Roboto', sans-serif;
+    font-family: 'League Gothic', sans-serif;
     font-size: 18px;
+    font-style: bold;
     box-sizing: border-box;
+}
+
+h1{
+    font-family: 'Poppins', sans-serif;
+    font-family: 'Rubik Moonrocks', cursive;
 }

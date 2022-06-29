@@ -8,3 +8,5 @@ var quickIconState = {
     "6":false,
     "7":false
 }
+
+

@@ -19,15 +19,17 @@ function getEraserInformation(){
 
 
 // information for text
-var myTextFontSize = document.getElementById("font__config__size");
 var myFontStyle = document.getElementById("font__config__style");
+var myTextFontSize = document.getElementById("font__config__size");
+var myFontFamily = document.getElementById("font__config__family");
 var myText = document.getElementById("text__config__value");
 
 function getTextInformation(){
     return {
-        "fontsize": myTextFontSize.value,
         "fontstyle": myFontStyle.options[myFontStyle.selectedIndex].value,
-        "text":myText.value
+        "fontsize": myTextFontSize.value,
+        "fontfamily": myFontFamily.options[myFontFamily.selectedIndex].value,
+        "text": myText.value
     }
 }
 

@@ -16,10 +16,7 @@
     width: fit-content;
     height: 100%;
     border: 1px solid black;
-    padding-left: 20px;
     font-size: 1rem;
-
-
 }
 label{
     color: black;
@@ -29,7 +26,6 @@ label{
     width: fit-content;
     height: 100%;
     border: 1px solid black;
-    padding-left: 20px;
     font-size: 1rem;
 
 
@@ -38,7 +34,20 @@ label{
     width: fit-content;
     height: 100%;
     border: 1px solid black;
-    padding-left: 20px;
+    font-size: 1rem;
+
+}
+.rotate__config{
+    width: fit-content;
+    height: 100%;
+    border: 1px solid black;
+    font-size: 1rem;
+
+}
+.filter__config{
+    width: fit-content;
+    height: 100%;
+    border: 1px solid black;
     font-size: 1rem;
 
 }

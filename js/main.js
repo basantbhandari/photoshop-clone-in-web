@@ -1,4 +1,9 @@
-const backendURL = "http://localhost:3000/";
+// const backendURL = "http://localhost:3000/";
+const backendURL = "https://snowy-different-scabiosa.glitch.me/";
+
+
+
+
 
 class Main{
     constructor(index){
@@ -8,7 +13,40 @@ class Main{
         this.body.style.height = "100vh";
         this.body.style.width = "100vw";
         this.layerArray = [];
-        this.newFile = document.getElementById("newFile");
+        this.currentMaximumLayer = 1;
+        this.startingWindow = document.createElement("div");
+        this.startingWindow.style.position = "absolute";
+        this.startingWindow.style.top = "0";
+        this.startingWindow.style.left = "0";
+        this.startingWindow.style.width = "100%";
+        this.startingWindow.style.height = "100vh";
+        this.startingWindow.style.backgroundImage = "url('./images/mainbg.jpg')";
+        this.startingWindow.style.backgroundSize = "contain";
+        this.startingWindow.style.backgroundRepeat = "repeat";
+        this.startingWindow.style.backgroundPosition = "center";
+        this.startingWindow.style.zIndex = "1";
+        this.startingWindow.style.display = "flex";
+        this.startingWindow.style.textAlign = "center";
+        this.startingWindow.style.justifyContent = "center";
+        this.startingWindow.innerHTML = `<h1 style="margin-top:25%;font-size:84px">Add workspace</h1>`;
+        this.body.appendChild(this.startingWindow);
+        this.startingWindow.addEventListener("click", (event) => {
+            this.bgFlag = true
+            this.myCanvasWrapper.innerHTML = ``;
+            this.myCanvasWrapper.style.background = "white"
+                        
+            let layerTemp = new MyLayer(this.layerItems.length + 1)
+            this.layerArray.push(layerTemp);
+            if(this.layerArray.length == 1){
+                    this.layerArray[0].myLayer.classList.add("layer__active")
+            }
+
+            this.startingWindow.remove();
+        });
+        
+
+
+        
         this.bgFlag = false;
         this.bodycontainer__right__control__control__move__down = document.getElementsByClassName("bodycontainer__right__control__control__move__down")[0];
         this.bodycontainer__right__control__control__move__up = document.getElementsByClassName("bodycontainer__right__control__control__move__up")[0];
@@ -19,37 +57,29 @@ class Main{
         this.topbar__lower__file__get__all__saved__files = document.getElementById("topbar__lower__file__get__all__saved__files");
         this.topbar__lower__file__save__the__Selected__canvas = document.getElementById("topbar__lower__file__save__the__Selected__canvas");
         this.topbar__lower__file__merge__and__save__all__canvas = document.getElementById("topbar__lower__file__merge__and__save__all__canvas");
-        this.myCanvasWrapper.innerHTML = `<img src="./images/mainbg.jpg" alt="mmy main bg" style="width:100%; height:99.5%" />
-        <h1 style="text-align: center;margin-top:-400px; color:white; font-style: italic; font-size: 38px;">Please add file first</h1>`;
+        this.myCanvasWrapper.innerHTML = ``;
 
         this.addLayerButton.addEventListener("click", () => {
             console.log("layer button clicked");
+            // getting the all the layers
+            this.currentMaximumLayer++;
+
+
             if(this.bgFlag){
-                let layerTemp = new MyLayer(this.layerItems.length + 1)
+                let layerTemp = new MyLayer(this.currentMaximumLayer)
                 this.layerArray.push(layerTemp);
                 if(this.layerArray.length == 1){
                     this.layerArray[0].myLayer.classList.add("layer__active")
                 }
-                console.log()
             }
 
-        });
-        this.newFile.addEventListener("click", (event)=>{
-            this.bgFlag = true
-            this.myCanvasWrapper.innerHTML = ``;
-            this.myCanvasWrapper.style.background = "white"
-            let layerTemp = new MyLayer(this.layerItems.length + 1)
-            this.layerArray.push(layerTemp);
-            if(this.layerArray.length == 1){
-                    this.layerArray[0].myLayer.classList.add("layer__active")
-            }
         });
         this.mergeButton.addEventListener("click", (event)=>{
             // merge and download all the layer based on the priority of creation
             let cnvs = document.createElement('canvas');
             document.body.appendChild(cnvs);
-            cnvs.height = 588;
-            cnvs.width = 950;
+            cnvs.height = this.layerArray[0].myLayerCanvas.canvas.height;
+            cnvs.width = this.layerArray[0].myLayerCanvas.canvas.width;
             let cxt = cnvs.getContext('2d');
 
             for (let i = 0; i < this.layerArray.length; i++) {
@@ -68,7 +98,7 @@ class Main{
             }
             document.body.removeChild(cnvs);
         });
-
+        //TODO: handle the delete layer exception 
 
         this.bodycontainer__right__control__control__move__down.addEventListener("click", ()=>{
             // move down the layer selection
@@ -328,10 +358,7 @@ class Main{
     }
 
 
-
-   
-    
 }
 
 
-let main = new Main(1)
+let main1 = new Main(1)

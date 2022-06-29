@@ -1,6 +1,7 @@
 class MyLayer{
     constructor(index){
-        this.layerIndex = index
+        this.layerIndex = index;
+        this.numberOfDeletedLayer = 0;
         this.removeLayerButton = document.getElementById("topbar__lower__layers__remove");
         this.myLayer = document.createElement("div")
         this.myLayer.classList.add("bodycontainer__right__layer__item");
@@ -19,11 +20,16 @@ class MyLayer{
 
         this.removeLayerButton.addEventListener("click", ()=>{
             let layerItems = document.getElementsByClassName("bodycontainer__right__layer__item");
-            for(let i = 0; i< layerItems.length; i++){
-                if(layerItems[i].classList.contains("layer__active")){
-                    layerItems[i].parentNode.removeChild(layerItems[i]);
-                }
-            };
+            if(layerItems.length   > 1){
+                for(let i = 0; i< layerItems.length; i++){
+                    if(layerItems[i].classList.contains("layer__active")){
+                        layerItems[i].parentNode.removeChild(layerItems[i]);
+                        this.numberOfDeletedLayer++;
+                        break;
+                    }
+                };
+            }
+            
         });
         this.myLayer.children[0].addEventListener("click", ()=>{
                     if (this.toggle) {
@@ -50,14 +56,14 @@ class MyLayer{
         this.myLayer.children[1].addEventListener("click", ()=>{
                 console.log(this.myLayer)
                 let allLayerItem = document.getElementsByClassName("bodycontainer__right__layer__item")
-                for(let j = 0; j< allLayerItem.length; j++){
-                    if(j == this.layerIndex-1){
-                        allLayerItem[j].classList.add("layer__active");
-                        continue
-                    }
-                    if(allLayerItem[j].classList.contains("layer__active")){
-                        allLayerItem[j].classList.remove("layer__active");
-                    }
+                for(let j = 0; j< allLayerItem.length+this.numberOfDeletedLayer; j++){
+                        if(allLayerItem[j].getAttribute("lindex") == this.layerIndex){
+                            allLayerItem[j].classList.add("layer__active");
+                            continue
+                        }
+                        if(allLayerItem[j].classList.contains("layer__active")){
+                            allLayerItem[j].classList.remove("layer__active");
+                        }                    
                 }
                 // get all the canvas 
                 let allCanvas = document.getElementsByClassName("eachCanvasItem");

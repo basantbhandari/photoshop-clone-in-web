@@ -20,7 +20,7 @@
 .topbar__upper ul li{
     display: inline-block;
     margin-right: 10px;
-    font-size: 0.8rem;
+    font-size: 1rem;
 } 
 .topbar__upper ul li:hover{
     color: white;
@@ -47,7 +47,7 @@
 .topbar__lower ul li{
     display: inline-block;
     margin-right: 10px;
-    font-size: 0.8rem;
+    font-size: 1rem;
 }
 .topbar__lower ul li:hover{
     color: white;
@@ -108,7 +108,7 @@
     box-sizing: border-box;
     overflow-x: hidden;
     background-image: url("../images/layerbg.png");
-    background-repeat: repeat-y;
+    background-repeat: repeat;
     background-size: contain;
 }
 .bodycontainer__right__layer__item {

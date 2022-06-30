@@ -2,8 +2,19 @@
   margin: 0;
   padding: 0;
 }
+:root {
+  --primary-color: #caa5fc;
+  --secondary-color: #e2d1f9;
+  --tertiary-color: #000;
+  --quaternary-color: #fff;
+  --pp-purple: #861a54;
+  --pp-blue: #054f7d;
+  --pp-ltblue: #00a7cf;
+  --sp-yellow: #efe348;
+}
 
 body {
+  font-family: "Roboto", sans-serif;
   font-family: "League Gothic", sans-serif;
   font-size: 18px;
   font-style: bold;

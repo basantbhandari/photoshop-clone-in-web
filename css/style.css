@@ -1,3 +1,6 @@
+/* lets import css file */
+@import url("./reset.css");
+
 .bodycontainer__left__bottom_color {
   bottom: 0;
   width: 100%;
@@ -17,34 +20,43 @@
   height: 100%;
   border: 1px solid black;
   font-size: 1rem;
+  padding: 0 5px;
 }
 label {
   color: black;
   font-style: bold;
+}
+.draw__config button {
+  display: inline-block;
+  padding: 0 5px;
 }
 .erase__config {
   width: fit-content;
   height: 100%;
   border: 1px solid black;
   font-size: 1rem;
+  padding: 0 5px;
 }
 .text__config {
   width: fit-content;
   height: 100%;
   border: 1px solid black;
   font-size: 1rem;
+  padding: 0 5px;
 }
 .rotate__config {
   width: fit-content;
   height: 100%;
   border: 1px solid black;
   font-size: 1rem;
+  padding: 0 5px;
 }
 .filter__config {
   width: fit-content;
   height: 100%;
   border: 1px solid black;
   font-size: 1rem;
+  padding: 0 5px;
 }
 input[type="range"] {
   width: 200px;
@@ -64,4 +76,66 @@ input[type="range"] {
 
 #myCanvasWrapper {
   box-shadow: inset 0px 0px 50px #e2d1f9;
+}
+
+.bodycontainer__right {
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradients 15s ease infinite;
+  height: 100vh;
+}
+
+.startingWindow {
+  background: linear-gradient(
+    to right,
+    var(--pp-blue),
+    var(--pp-ltblue),
+    var(--sp-yellow),
+    var(--pp-purple),
+    var(--pp-blue)
+  );
+  overflow: hidden;
+  background-size: 400% 400%;
+  /* Animation */
+  animation-duration: 15s;
+  animation-iteration-count: infinite;
+  animation-name: gradients;
+}
+@keyframes gradients {
+  0% {
+    background-position: 0 0;
+  }
+  25% {
+    background-position: 50% 0;
+  }
+  50% {
+    background-position: 90% 0;
+  }
+  60% {
+    background-position: 60%;
+  }
+  75% {
+    background-position: 40%;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+.helpWindow {
+  background: linear-gradient(
+    to right,
+    var(--pp-blue),
+    var(--pp-ltblue),
+    var(--sp-yellow),
+    var(--pp-purple),
+    var(--pp-blue)
+  );
+  overflow: hidden;
+  background-size: 400% 400%;
+
+  /* Animation */
+  animation-duration: 40s;
+  animation-iteration-count: infinite;
+  animation-name: gradients;
 }

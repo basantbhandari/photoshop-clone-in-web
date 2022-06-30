@@ -105,6 +105,7 @@ class MyCanvas {
     this.canvasIndex = index || 0;
     this.canvasOffset = 4;
     this.lineWidth = 10;
+    this.draw__config__undo = document.getElementById("draw__config__undo");
     this.is__this__canvas__is__blank = true;
     this.canvas = document.createElement("canvas");
     this.canvas.style.cursor = "crosshair";
@@ -196,6 +197,10 @@ class MyCanvas {
     this.text__config = document.getElementsByClassName("text__config")[0];
     this.rotate__config = document.getElementsByClassName("rotate__config")[0];
     this.filter__config = document.getElementsByClassName("filter__config")[0];
+
+    // implementing undo operation on drawing
+    this.undoFlagIndex = -1;
+    this.undoStack = [];
 
     window.onresize = () => {
       this.canvas.height =
@@ -583,6 +588,16 @@ class MyCanvas {
         if (this.is_drawing_clicked) {
           this.globalCoordinateObjectHistry.draw.mouseUpPoint =
             this.getMousePos(event);
+          // implementing the undo functionality
+          this.undoStack.push(
+            this.context.getImageData(
+              0,
+              0,
+              this.canvas.width,
+              this.canvas.height
+            )
+          );
+          this.undoFlagIndex++;
         }
         if (this.is_eraser_clicked) {
           this.globalCoordinateObjectHistry.eraser.mouseUpPoint =
@@ -1126,6 +1141,12 @@ class MyCanvas {
       this.is_rotate_clicked = false;
       this.is_text_clicked = false;
       this.is_crop_clicked = false;
+      // resetting the shape type
+      this.shapeDrawLineFlag = false;
+      this.shapeDrawTriangleFlag = false;
+      this.shapeDrawRectangleFlag = false;
+      this.shapeDrawPolygonFlag = false;
+      this.ShapeDrawCircleFlag = false;
 
       this.draw__config.style.display = "none";
       this.erase__config.style.display = "none";
@@ -1163,6 +1184,9 @@ class MyCanvas {
           document.body.removeChild(a);
         }
       }
+    });
+    this.draw__config__undo.addEventListener("click", () => {
+      this.undoLastDrawing();
     });
 
     this.topbar__lower__shapes__list__option.addEventListener(
@@ -1290,6 +1314,18 @@ class MyCanvas {
   clearCanvas() {
     this.context.fillStyle = "white";
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    this.context.fillRect(0, 0, this.canvas.width, this.canvas.height);
+    this.undo_stack = [];
+    this.undoFlagIndex = -1;
+  }
+  undoLastDrawing() {
+    if (this.undoFlagIndex <= 0) {
+      this.clearCanvas();
+    } else {
+      this.undoFlagIndex--;
+      this.undoStack.pop();
+      this.context.putImageData(this.undoStack[this.undoFlagIndex], 0, 0);
+    }
   }
 
   checkForTheQuickIconClick() {

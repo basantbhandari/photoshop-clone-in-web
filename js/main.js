@@ -146,7 +146,6 @@ class Main {
     this.myCanvasWrapper.innerHTML = ``;
 
     this.addLayerButton.addEventListener("click", () => {
-      console.log("layer button clicked");
       // getting the all the layers
       this.currentMaximumLayer++;
 
@@ -173,7 +172,7 @@ class Main {
       if (window.navigator.msSavedBlob) {
         window.navigator.msSavedBlob(
           this.canvas.msToBlob(),
-          "canvas-image.png"
+          `canvas-image${this.getFiveDigitRandomNumber()}.png`
         );
       } else {
         let a = document.createElement("a");
@@ -324,7 +323,7 @@ class Main {
                 let a = document.createElement("a");
                 document.body.appendChild(a);
                 a.href = `${element[1].imagedata}`;
-                a.download = `canvas__image__${element[1].name}.png`;
+                a.download = `canvas__image${this.getFiveDigitRandomNumber()}.png`;
                 a.click();
                 document.body.removeChild(a);
               });

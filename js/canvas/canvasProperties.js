@@ -126,6 +126,12 @@ class MyCanvas {
     this.addImage = document.getElementById(
       "topbar__lower__images__add__image"
     );
+    this.uploadImageInputForm = document.getElementById(
+      "topbar__lower__images__image__input"
+    );
+    this.uploadImageInputForm.addEventListener("change", (e) => {
+      this.uploadImageOnTheCanvas();
+    });
     this.myoffsetLeft = 70;
     this.myoffsetTop = 54;
     this.is_Image__add__Clicked = false;
@@ -484,11 +490,9 @@ class MyCanvas {
           if (this.is__this__canvas__is__blank) {
             this.globalCoordinateObjectHistry.text.mouseUpPoint =
               this.getMousePos(event);
-            this.is_text_clicked = false;
             this.context.font = `${this.fontSize}px ${this.fontFamily}`;
             this.is_texting = true;
             let textConfig = getTextInformation();
-            // debugger;
             this.context.font = `${textConfig["fontstyle"]} ${textConfig["fontsize"]}px ${textConfig["fontfamily"]}`;
             this.context.strokeStyle = getUpdatedColor();
             this.context.strokeText(
@@ -662,7 +666,6 @@ class MyCanvas {
           }
           //convert uploaded image to base 64 and append it to Div
           this.getBase64(uplImg).then((data) => {
-            console.log(data);
             let imgObj = new Image();
             imgObj.onload = () => {
               this.context.drawImage(
@@ -674,7 +677,6 @@ class MyCanvas {
               );
             };
             imgObj.src = data;
-            this.is_Image__add__Clicked = false;
             // put the filter on the image
             this.filtersActivationOnThatImage(
               imgObj,
@@ -732,7 +734,6 @@ class MyCanvas {
               this.globalCoordinateObjectHistry.image.mouseUpPoint.y
           ) {
             // this means image is illigible to crop
-            console.log("image is illigible to crop");
             let myImage = new Image();
             myImage.src = this.canvas.toDataURL();
             // erase the image from the canvas
@@ -793,9 +794,6 @@ class MyCanvas {
                   dHeight
                 );
               };
-
-              this.is_crop_clicked = false;
-              console.log("image get cropped");
             });
 
             // update the coordinate objects
@@ -861,8 +859,6 @@ class MyCanvas {
             this.globalCoordinateObjectHistry.move.mouseDownPoint.y <=
               this.globalCoordinateObjectHistry.image.mouseDownPoint.y + height
           ) {
-            // this means image is illigible to move
-            console.log("image is illigible to move");
             // erase the image from the canvas
             this.context.clearRect(
               this.globalCoordinateObjectHistry.image.mouseDownPoint.x,
@@ -895,8 +891,6 @@ class MyCanvas {
                 this.context.drawImage(imgObj, dx, dy, width, height);
               };
               imgObj.src = data;
-              this.is_move_clicked = false;
-              console.log("image moveped");
             });
             // update the coordinate objects
             this.globalCoordinateObjectHistry.image.mouseDownPoint =
@@ -962,8 +956,6 @@ class MyCanvas {
             this.globalCoordinateObjectHistry.scale.mouseDownPoint.y <=
               this.globalCoordinateObjectHistry.image.mouseDownPoint.y + height
           ) {
-            // this means image is illigible to scale
-            console.log("image is illigible to scale");
             // erase the image from the canvas
             this.context.clearRect(
               this.globalCoordinateObjectHistry.image.mouseDownPoint.x,
@@ -1002,8 +994,6 @@ class MyCanvas {
                 this.context.drawImage(imgObj, dx, dy, dWidth, dHeight);
               };
               imgObj.src = data;
-              this.is_scale_clicked = false;
-              console.log("image scaled");
             });
             // update the coordinate objects
             this.globalCoordinateObjectHistry.image.mouseDownPoint =
@@ -1068,8 +1058,6 @@ class MyCanvas {
             this.globalCoordinateObjectHistry.rotate.mouseDownPoint.y <=
               this.globalCoordinateObjectHistry.image.mouseDownPoint.y + height
           ) {
-            // this means image is illigible to rotate
-            console.log("image is illigible to rotate");
             // erase the image from the canvas
             this.context.clearRect(
               this.globalCoordinateObjectHistry.image.mouseDownPoint.x,
@@ -1113,8 +1101,6 @@ class MyCanvas {
                 this.context.restore();
               };
               imgObj.src = data;
-              this.is_rotate_clicked = false;
-              console.log("image ratated");
             });
             // update the coordinate objects
             this.globalCoordinateObjectHistry.image.mouseDownPoint =
@@ -1133,37 +1119,7 @@ class MyCanvas {
     );
 
     this.addImage.addEventListener("click", () => {
-      let selectedLayer = document.getElementsByClassName("layer__active")[0];
-      // make sure that all the quick tools are disabled
-      this.is_drawing_clicked = false;
-      this.is_eraser_clicked = false;
-      this.is_scale_clicked = false;
-      this.is_move_clicked = false;
-      this.is_rotate_clicked = false;
-      this.is_text_clicked = false;
-      this.is_crop_clicked = false;
-      // resetting the shape type
-      this.shapeDrawLineFlag = false;
-      this.shapeDrawTriangleFlag = false;
-      this.shapeDrawRectangleFlag = false;
-      this.shapeDrawPolygonFlag = false;
-      this.ShapeDrawCircleFlag = false;
-
-      this.draw__config.style.display = "none";
-      this.erase__config.style.display = "none";
-      this.text__config.style.display = "none";
-      this.rotate__config.style.display = "none";
-      this.filter__config.style.display = "none";
-
-      try {
-        let selectedLayerIndex = selectedLayer.getAttribute("lindex");
-        this.is_move_clicked = false;
-        if (selectedLayerIndex == this.canvasIndex) {
-          this.is_Image__add__Clicked = true;
-        }
-      } catch (error) {
-        console.log("Please work on layer");
-      }
+      this.uploadImageOnTheCanvas();
     });
 
     this.downloadHandler.addEventListener("click", () => {
@@ -1174,13 +1130,13 @@ class MyCanvas {
         if (window.navigator.msSavedBlob) {
           window.navigator.msSavedBlob(
             this.canvas.msToBlob(),
-            "canvas-image.png"
+            `canvas-image${this.getFiveDigitRandomNumber()}.png`
           );
         } else {
           let a = document.createElement("a");
           document.body.appendChild(a);
           a.href = this.canvas.toDataURL();
-          a.download = "canvas-image.png";
+          a.download = `canvas-image${this.getFiveDigitRandomNumber()}.png`;
           a.click();
           document.body.removeChild(a);
         }
@@ -1327,7 +1283,6 @@ class MyCanvas {
       this.clearCanvas();
     } else {
       this.undoFlagIndex--;
-      // this.undoStack.pop();
       this.context.putImageData(this.undoStack[this.undoFlagIndex], 0, 0);
     }
   }
@@ -1338,6 +1293,39 @@ class MyCanvas {
     }
     this.undoFlagIndex++;
     this.context.putImageData(this.undoStack[this.undoFlagIndex], 0, 0);
+  }
+  uploadImageOnTheCanvas() {
+    let selectedLayer = document.getElementsByClassName("layer__active")[0];
+    // make sure that all the quick tools are disabled
+    this.is_drawing_clicked = false;
+    this.is_eraser_clicked = false;
+    this.is_scale_clicked = false;
+    this.is_move_clicked = false;
+    this.is_rotate_clicked = false;
+    this.is_text_clicked = false;
+    this.is_crop_clicked = false;
+    // resetting the shape type
+    this.shapeDrawLineFlag = false;
+    this.shapeDrawTriangleFlag = false;
+    this.shapeDrawRectangleFlag = false;
+    this.shapeDrawPolygonFlag = false;
+    this.ShapeDrawCircleFlag = false;
+
+    this.draw__config.style.display = "none";
+    this.erase__config.style.display = "none";
+    this.text__config.style.display = "none";
+    this.rotate__config.style.display = "none";
+    this.filter__config.style.display = "none";
+
+    try {
+      let selectedLayerIndex = selectedLayer.getAttribute("lindex");
+      this.is_move_clicked = false;
+      if (selectedLayerIndex == this.canvasIndex) {
+        this.is_Image__add__Clicked = true;
+      }
+    } catch (error) {
+      console.log("Please work on layer");
+    }
   }
 
   checkForTheQuickIconClick() {
@@ -1353,6 +1341,7 @@ class MyCanvas {
             this.is_rotate_clicked = false;
             this.is_text_clicked = false;
             this.is_crop_clicked = false;
+            this.is_Image__add__Clicked = false;
             this.draw__config.style.display = "block";
             this.erase__config.style.display = "none";
             this.text__config.style.display = "none";
@@ -1373,6 +1362,9 @@ class MyCanvas {
             this.is_rotate_clicked = false;
             this.is_text_clicked = false;
             this.is_crop_clicked = false;
+
+            this.is_Image__add__Clicked = false;
+
             this.draw__config.style.display = "none";
             this.erase__config.style.display = "block";
             this.text__config.style.display = "none";
@@ -1393,6 +1385,9 @@ class MyCanvas {
             this.is_rotate_clicked = false;
             this.is_text_clicked = false;
             this.is_crop_clicked = false;
+
+            this.is_Image__add__Clicked = false;
+
             this.draw__config.style.display = "none";
             this.erase__config.style.display = "none";
             this.text__config.style.display = "none";
@@ -1413,6 +1408,9 @@ class MyCanvas {
             this.is_rotate_clicked = false;
             this.is_text_clicked = false;
             this.is_crop_clicked = false;
+
+            this.is_Image__add__Clicked = false;
+
             this.draw__config.style.display = "none";
             this.erase__config.style.display = "none";
             this.text__config.style.display = "none";
@@ -1433,6 +1431,9 @@ class MyCanvas {
             this.is_rotate_clicked = true;
             this.is_text_clicked = false;
             this.is_crop_clicked = false;
+
+            this.is_Image__add__Clicked = false;
+
             this.draw__config.style.display = "none";
             this.erase__config.style.display = "none";
             this.text__config.style.display = "none";
@@ -1453,11 +1454,14 @@ class MyCanvas {
             this.is_rotate_clicked = false;
             this.is_text_clicked = true;
             this.is_crop_clicked = false;
+
+            this.is_Image__add__Clicked = false;
+
             this.draw__config.style.display = "none";
             this.erase__config.style.display = "none";
-            this.text__config.style.display = "block";
             this.rotate__config.style.display = "none";
             this.filter__config.style.display = "none";
+            this.text__config.style.display = "block";
 
             this.shapeDrawLineFlag = false;
             this.shapeDrawTriangleFlag = false;
@@ -1474,6 +1478,9 @@ class MyCanvas {
             this.is_rotate_clicked = false;
             this.is_text_clicked = false;
             this.is_crop_clicked = true;
+
+            this.is_Image__add__Clicked = false;
+
             this.draw__config.style.display = "none";
             this.erase__config.style.display = "none";
             this.text__config.style.display = "none";
@@ -1495,6 +1502,9 @@ class MyCanvas {
             this.is_rotate_clicked = false;
             this.is_text_clicked = false;
             this.is_crop_clicked = false;
+
+            this.is_Image__add__Clicked = false;
+
             this.draw__config.style.display = "none";
             this.erase__config.style.display = "none";
             this.text__config.style.display = "none";
@@ -1658,48 +1668,31 @@ class MyCanvas {
   }
 
   applyBrightNessFilter(image, x, y, width, height) {
-    // get the value of the brightness slider
     let brightness_value = this.filter__config__brightness.value;
-    // create the image data
-    // set brightness value
-    // A value under 100% darkens the image, while a value over 100% brightens it.
     this.context.filter = "brightness(" + brightness_value + "%)";
   }
   applyContrastFilter(image, x, y, width, height) {
-    // get the value of the contrast slider
     let contrast_value = this.filter__config__contrast.value;
-    // create the image data
-    // set contrast value
-    // A value of 0% is unchanged, while a value of 200% is 2x the original value.
     this.context.filter = "contrast(" + contrast_value + "%)";
   }
   applyGrayScaleFilter(image, x, y, width, height) {
-    // get the value of the grayscale slider
     let grayscale_value = this.filter__config__grayscale.value;
-    // apply contrast value
-    // A value of 0% will create a drawing that is completely black. A value of 100% leaves the drawing unchanged
     this.context.filter = "grayscale(" + grayscale_value + "%)";
   }
   applySaturationFilter(image, x, y, width, height) {
-    // get the value of the brightness slider
     let saturation_value = this.filter__config__saturation.value;
-    // apply contrast value
-    // A value of 0% will create a drawing that is completely black. A value of 100% leaves the drawing unchanged
     this.context.filter = "saturate(" + saturation_value + "%)";
   }
 
   applySepiaFilter(image, x, y, width, height) {
-    // get the value of the brightness slider
     let sepia_value = this.filter__config__sepia.value;
-    // apply contrast value
-    // A value of 0% will create a drawing that is completely black. A value of 100% leaves the drawing unchanged
     this.context.filter = "sepia(" + sepia_value + "%)";
   }
   applyHueFilter(image, x, y, width, height) {
-    // get the value of the brightness slider
     let hue_value = this.filter__config__hue.value;
-    // apply contrast value
-    // A value of 0% will create a drawing that is completely black. A value of 100% leaves the drawing unchanged
     this.context.filter = "hue-rotate(" + hue_value + "deg)";
+  }
+  getFiveDigitRandomNumber() {
+    return Math.floor(Math.random() * (999999 - 100000 + 1)) + 100000;
   }
 }

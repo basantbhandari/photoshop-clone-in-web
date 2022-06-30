@@ -1,4 +1,3 @@
-// get the color reference
 var myColor = document.getElementById("colorpicker");
 var COLOR = myColor.value;
 myColor.addEventListener("change", function () {

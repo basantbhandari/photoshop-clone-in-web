@@ -25,7 +25,6 @@ topbar__lower__filter.classList.add("topbar__upper__hide_menu");
 topbar__lower__help.classList.add("topbar__upper__hide_menu");
 
 // lets handle the click event on top bar upper
-
 topbar__upper__edit.addEventListener("click", function () {
   if (topbar__lower__edit.classList.contains("topbar__upper__hide_menu")) {
     topbar__lower__edit.classList.remove("topbar__upper__hide_menu");

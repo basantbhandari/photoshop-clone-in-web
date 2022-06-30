@@ -42,7 +42,6 @@ class MyLayer {
       }
     });
     this.myLayer.children[1].addEventListener("click", () => {
-      console.log(this.myLayer);
       let allLayerItem = document.getElementsByClassName(
         "bodycontainer__right__layer__item"
       );

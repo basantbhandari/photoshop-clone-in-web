@@ -1,5 +1,3 @@
-// getting the input reference for config
-
 // information for drawing
 var myDrawPencilSize = document.getElementById("draw__config__size");
 var myDrawStyle = document.getElementById("draw__config__style");

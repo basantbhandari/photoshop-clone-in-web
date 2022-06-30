@@ -1,10 +1,6 @@
 class MyLayer {
   constructor(index) {
     this.layerIndex = index;
-    this.numberOfDeletedLayer = 0;
-    this.removeLayerButton = document.getElementById(
-      "topbar__lower__layers__remove"
-    );
     this.myLayer = document.createElement("div");
     this.myLayer.classList.add("bodycontainer__right__layer__item");
     this.myLayer.setAttribute("lindex", this.layerIndex);
@@ -26,20 +22,6 @@ class MyLayer {
       "bodycontainer__right__layer__item__visibilitySign"
     );
 
-    this.removeLayerButton.addEventListener("click", () => {
-      let layerItems = document.getElementsByClassName(
-        "bodycontainer__right__layer__item"
-      );
-      if (layerItems.length > 1) {
-        for (let i = 0; i < layerItems.length; i++) {
-          if (layerItems[i].classList.contains("layer__active")) {
-            layerItems[i].parentNode.removeChild(layerItems[i]);
-            this.numberOfDeletedLayer++;
-            break;
-          }
-        }
-      }
-    });
     this.myLayer.children[0].addEventListener("click", () => {
       if (this.toggle) {
         this.myLayer.children[0].src = "../../images/icons/eye-off.png";
@@ -64,11 +46,7 @@ class MyLayer {
       let allLayerItem = document.getElementsByClassName(
         "bodycontainer__right__layer__item"
       );
-      for (
-        let j = 0;
-        j < allLayerItem.length + this.numberOfDeletedLayer;
-        j++
-      ) {
+      for (let j = 0; j < allLayerItem.length; j++) {
         if (allLayerItem[j].getAttribute("lindex") == this.layerIndex) {
           allLayerItem[j].classList.add("layer__active");
           continue;

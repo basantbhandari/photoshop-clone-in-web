@@ -20,6 +20,10 @@ class Main {
     this.startingWindow.style.width = "100%";
     this.startingWindow.style.height = "100vh";
     this.startingWindow.style.zIndex = "100";
+    this.numberOfDeletedLayer = 0;
+    this.removeLayerButton = document.getElementById(
+      "topbar__lower__layers__remove"
+    );
     this.startingWindow.style.display = "flex";
     this.startingWindow.style.textAlign = "center";
     this.startingWindow.style.justifyContent = "center";
@@ -82,6 +86,22 @@ class Main {
       });
       helpWindow.appendChild(closeButton);
       this.body.appendChild(helpWindow);
+    });
+    this.removeLayerButton.addEventListener("click", () => {
+      let layerItems = document.getElementsByClassName(
+        "bodycontainer__right__layer__item"
+      );
+      if (layerItems.length > 1) {
+        for (let i = 0; i < layerItems.length; i++) {
+          if (layerItems[i].classList.contains("layer__active")) {
+            layerItems[i].parentNode.removeChild(layerItems[i]);
+            // remove the layer from the layer array
+            this.layerArray.splice(i, 1);
+            this.numberOfDeletedLayer++;
+            break;
+          }
+        }
+      }
     });
     this.startingWindow.addEventListener("click", (event) => {
       this.bgFlag = true;
@@ -159,7 +179,7 @@ class Main {
         let a = document.createElement("a");
         document.body.appendChild(a);
         a.href = cnvs.toDataURL();
-        a.download = "canvas-image.png";
+        a.download = `canvas-image${this.getFiveDigitRandomNumber()}.png`;
         a.click();
         document.body.removeChild(a);
       }
@@ -428,6 +448,10 @@ class Main {
           });
       }
     );
+  }
+
+  getFiveDigitRandomNumber() {
+    return Math.floor(Math.random() * (999999 - 100000 + 1)) + 100000;
   }
 }
 

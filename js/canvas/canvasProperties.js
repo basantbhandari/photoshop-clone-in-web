@@ -106,6 +106,7 @@ class MyCanvas {
     this.canvasOffset = 4;
     this.lineWidth = 10;
     this.draw__config__undo = document.getElementById("draw__config__undo");
+    this.draw__config__redo = document.getElementById("draw__config__redo");
     this.is__this__canvas__is__blank = true;
     this.canvas = document.createElement("canvas");
     this.canvas.style.cursor = "crosshair";
@@ -1188,6 +1189,9 @@ class MyCanvas {
     this.draw__config__undo.addEventListener("click", () => {
       this.undoLastDrawing();
     });
+    this.draw__config__redo.addEventListener("click", () => {
+      this.redoLastDrawing();
+    });
 
     this.topbar__lower__shapes__list__option.addEventListener(
       "change",
@@ -1323,9 +1327,17 @@ class MyCanvas {
       this.clearCanvas();
     } else {
       this.undoFlagIndex--;
-      this.undoStack.pop();
+      // this.undoStack.pop();
       this.context.putImageData(this.undoStack[this.undoFlagIndex], 0, 0);
     }
+  }
+  // implement the redo functionality
+  redoLastDrawing() {
+    if (this.undoFlagIndex >= this.undoStack.length - 1) {
+      return;
+    }
+    this.undoFlagIndex++;
+    this.context.putImageData(this.undoStack[this.undoFlagIndex], 0, 0);
   }
 
   checkForTheQuickIconClick() {

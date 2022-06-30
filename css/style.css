@@ -1,73 +1,67 @@
-.bodycontainer__left__bottom_color{
-    bottom: 0;
-    width: 100%;
-    height: 40px;
-    position: absolute;
+.bodycontainer__left__bottom_color {
+  bottom: 0;
+  width: 100%;
+  height: 40px;
+  position: absolute;
 }
-#colorpicker{
-    width: 100%;
-    height: 100%;
+#colorpicker {
+  width: 100%;
+  height: 100%;
 }
-.topbar__upper__hide_menu{
-    display: none;
+.topbar__upper__hide_menu {
+  display: none;
 }
 /* styling the config div */
-.draw__config{
-    width: fit-content;
-    height: 100%;
-    border: 1px solid black;
-    font-size: 1rem;
+.draw__config {
+  width: fit-content;
+  height: 100%;
+  border: 1px solid black;
+  font-size: 1rem;
 }
-label{
-    color: black;
-    font-style:bold;
+label {
+  color: black;
+  font-style: bold;
 }
-.erase__config{
-    width: fit-content;
-    height: 100%;
-    border: 1px solid black;
-    font-size: 1rem;
-
-
+.erase__config {
+  width: fit-content;
+  height: 100%;
+  border: 1px solid black;
+  font-size: 1rem;
 }
-.text__config{
-    width: fit-content;
-    height: 100%;
-    border: 1px solid black;
-    font-size: 1rem;
-
+.text__config {
+  width: fit-content;
+  height: 100%;
+  border: 1px solid black;
+  font-size: 1rem;
 }
-.rotate__config{
-    width: fit-content;
-    height: 100%;
-    border: 1px solid black;
-    font-size: 1rem;
-
+.rotate__config {
+  width: fit-content;
+  height: 100%;
+  border: 1px solid black;
+  font-size: 1rem;
 }
-.filter__config{
-    width: fit-content;
-    height: 100%;
-    border: 1px solid black;
-    font-size: 1rem;
-
+.filter__config {
+  width: fit-content;
+  height: 100%;
+  border: 1px solid black;
+  font-size: 1rem;
 }
-input[type="range"]{
-    width: 200px;
-    background-color: #E2D1F9 !important;
-    color: aqua;
-    appearance: none;
-    vertical-align:middle
-
+input[type="range"] {
+  width: 200px;
+  background-color: #e2d1f9 !important;
+  color: aqua;
+  appearance: none;
+  vertical-align: middle;
 }
 
-#text__config__value{
-    min-width: 300px;
-    background-color: #E2D1F9;
-    padding: 2px;
-    appearance: none;
-    border: none;
+#text__config__value {
+  min-width: 300px;
+  background-color: #e2d1f9;
+  padding: 2px;
+  appearance: none;
+  border: none;
 }
 
-#myCanvasWrapper{
-    box-shadow: inset 0px 0px 50px #E2D1F9;
+#myCanvasWrapper {
+  box-shadow: inset 0px 0px 50px #e2d1f9;
 }

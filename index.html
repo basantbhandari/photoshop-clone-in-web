@@ -1,195 +1,298 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>photoshop on web</title>
-	<link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon">
-	<link rel="stylesheet" href="./css/reset.css">
-	<link rel="stylesheet" href="./css/style.css">
-	<link rel="stylesheet" href="./css/layout.css">
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&family=Rubik+Moonrocks&display=swap" rel="stylesheet">
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=League+Gothic&family=Poppins:wght@200&family=Rubik+Moonrocks&display=swap" rel="stylesheet">
-</head>
-<body>
-	
-	<nav id="topbar">
-		<div class="topbar__upper">
-			<img src="./images/icons/photoshop logo.jpg" alt="phtoshop logo">
-			<ul>
-				<li id="topbar__upper__edit">Edit</li>
-				<li id="topbar__upper__images">Images</li>
-				<li id="topbar__upper__layers">Layers</li>
-				<li id="topbar__upper__shapes">Shapes</li>
-				<li id="topbar__upper__filter">Filter</li>
-				<li id="topbar__upper__help">Help</li>
-			</ul>
-		</div>
-		<div class="topbar__lower">
-			<div class="topbar__lower__left">
-				<ul id="topbar__lower__edit">
-					<li id="topbar__lower__edit__Download">Download</li>
-					<li id="topbar__lower__edit__Merge">Merge and Download</li>
-					<li id="topbar__lower__file__get__all__saved__files">Get All</li>
-					<li id="topbar__lower__file__save__the__Selected__canvas">Save file</li>
-					<li id="topbar__lower__file__merge__and__save__all__canvas">Merge and save files</li>
-				</ul>
-				<ul id="topbar__lower__images">
-					<li id="topbar__lower__images__add__image">Add image</li>
-					<form style="display: inline" id="uploadform">
-						<input type="file" id="topbar__lower__images__image__input" accept="image/jpeg, image/png, image/jpg">
-					</form>
-					<!-- resize, move, rotate -->
-				</ul>
-				<ul id="topbar__lower__layers">
-					<li id="topbar__lower__layers__add">Add layer</li>
-					<li id="topbar__lower__layers__remove">Remove layer</li>
-				</ul>
-				<ul id="topbar__lower__shapes">
-					<li>
-						<select id = "topbar__lower__shapes__list__option" >  
-							<option> ---Choose shape--- </option> 
-							<option value="line"> line </option> 
-							<option value="Triangle"> Triangle </option>  
-							<option value="Rectangle"> Rectangle </option>  
-							<option value="Polygon"> Polygon </option>  
-							<option value="Circle"> Circle </option>
-						</select>  
-					</li>
-				</ul>
-				<ul id="topbar__lower__filter">
-					<li id="topbar__lower__brightness">BrightNess</li>
-					<li id="topbar__lower__contrast">Contrast</li>
-					<li id="topbar__lower__grayscale">Grayscale</li>
-					<li id="topbar__lower__saturation">Saturation</li>
-					<li id="topbar__lower__sepia">Sepia</li>
-					<li id="topbar__lower__hue">Hue</li>
-				</ul>
-				<ul id="topbar__lower__help">
-					<li>Help 1</li>
-				</ul>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>photoshop on web</title>
+    <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="./css/reset.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/layout.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&family=Rubik+Moonrocks&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=League+Gothic&family=Poppins:wght@200&family=Rubik+Moonrocks&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <nav id="topbar">
+      <div class="topbar__upper">
+        <img src="./images/icons/photoshop logo.jpg" alt="phtoshop logo" />
+        <ul>
+          <li id="topbar__upper__edit">Edit</li>
+          <li id="topbar__upper__images">Images</li>
+          <li id="topbar__upper__layers">Layers</li>
+          <li id="topbar__upper__shapes">Shapes</li>
+          <li id="topbar__upper__filter">Filter</li>
+          <li id="topbar__upper__help">Help</li>
+        </ul>
+      </div>
+      <div class="topbar__lower">
+        <div class="topbar__lower__left">
+          <ul id="topbar__lower__edit">
+            <li id="topbar__lower__edit__Download">Download</li>
+            <li id="topbar__lower__edit__Merge">Merge and Download</li>
+            <li id="topbar__lower__file__get__all__saved__files">Get All</li>
+            <li id="topbar__lower__file__save__the__Selected__canvas">
+              Save file
+            </li>
+            <li id="topbar__lower__file__merge__and__save__all__canvas">
+              Merge and save files
+            </li>
+          </ul>
+          <ul id="topbar__lower__images">
+            <li id="topbar__lower__images__add__image">Add image</li>
+            <form style="display: inline" id="uploadform">
+              <input
+                type="file"
+                id="topbar__lower__images__image__input"
+                accept="image/jpeg, image/png, image/jpg"
+              />
+            </form>
+            <!-- resize, move, rotate -->
+          </ul>
+          <ul id="topbar__lower__layers">
+            <li id="topbar__lower__layers__add">Add layer</li>
+            <li id="topbar__lower__layers__remove">Remove layer</li>
+          </ul>
+          <ul id="topbar__lower__shapes">
+            <li>
+              <select id="topbar__lower__shapes__list__option">
+                <option>---Choose shape---</option>
+                <option value="line">line</option>
+                <option value="Triangle">Triangle</option>
+                <option value="Rectangle">Rectangle</option>
+                <option value="Polygon">Hexagon</option>
+                <option value="Circle">Circle</option>
+              </select>
+            </li>
+          </ul>
+          <ul id="topbar__lower__filter">
+            <li id="topbar__lower__brightness">BrightNess</li>
+            <li id="topbar__lower__contrast">Contrast</li>
+            <li id="topbar__lower__grayscale">Grayscale</li>
+            <li id="topbar__lower__saturation">Saturation</li>
+            <li id="topbar__lower__sepia">Sepia</li>
+            <li id="topbar__lower__hue">Hue</li>
+          </ul>
+          <ul id="topbar__lower__help">
+            <li>Help 1</li>
+          </ul>
+        </div>
+        <div class="topbar__lower__right">
+          <div class="draw__config">
+            <!-- for draw -->
+            <!-- draw size -->
+            <label for="draw__config__size">pencil size:</label>
+            <input
+              type="range"
+              min="1"
+              max="100"
+              name="draw__config__size"
+              value="20"
+              class="slider"
+              id="draw__config__size"
+            />
+            <!-- draw style(solid or doted) -->
+            <select id="draw__config__style" class="mySelectMenu">
+              <option value="solid">solid</option>
+              <option value="doted">doted</option>
+            </select>
+          </div>
+          <div class="erase__config">
+            <!-- for erase -->
+            <label for="erase__config__size">eraser size:</label>
+            <input
+              type="range"
+              min="1"
+              max="100"
+              name="erase__config__size"
+              value="20"
+              class="slider"
+              id="erase__config__size"
+            />
+            <!-- eraser size -->
+          </div>
 
-			</div>
-			<div class="topbar__lower__right">
-				<div class="draw__config">
-					<!-- for draw -->
-					<!-- draw size -->
-					<label for="draw__config__size">pencil size:</label>
-					<input type="range" min="1" max="100" name="draw__config__size" value="20" class="slider" id="draw__config__size">
-					<!-- draw style(solid or doted) -->
-					<select id="draw__config__style" class="mySelectMenu">
-						<option value="solid">solid</option>
-						<option value="doted">doted</option>
-					</select>
-				</div>
-				<div class="erase__config">
-					<!-- for erase -->
-					<label for="erase__config__size">eraser size:</label>
-					<input type="range" min="1" max="100" name="erase__config__size" value="20" class="slider" id="erase__config__size">
-					<!-- eraser size -->
-				</div>
-
-				<div class="text__config">
-				<!-- for text -->
-					<!-- font size, font type -->
-					<select id="font__config__style" class="mySelectMenu">
-						<option value="normal">Normal</option>
-						<option value="italic">Italic</option>
-						<option value="bold">Bold</option>
-					</select>
-					<label for="font__config__size">font size:</label>
-					<input type="range" min="1" max="100" name="font__config__size" value="20" class="slider" id="font__config__size">
-					<select id="font__config__family" class="mySelectMenu">
-						<option value="Calibri">Calibri</option>
-						<option value="Arial">Arial</option>
-						<option value="Helvetica">Helvetica</option>
-						<option value="Times New Roman">Times New Roman</option>
-						<option value="Verdana">Verdana</option>
-						<option value="Georgia">Georgia</option>
-						<option value="Courier New">Courier New</option>
-						<option value="Impact">Impact</option>
-						<option value="Comic Sans MS">Comic Sans MS</option>
-						<option value="Tahoma">Tahoma</option>
-						<option value="Trebuchet MS">Trebuchet MS</option>
-						<option value="Palatino Linotype">Palatino Linotype</option>
-						<option value="Lucida Sans Unicode">Lucida Sans Unicode</option>
-						<option value="MS Sans Serif">MS Sans Serif</option>
-						<option value="MS Serif">MS Serif</option>
-						<option value="Symbol">Symbol</option>
-						<option value="Webdings">Webdings</option>
-						<option value="Wingdings">Wingdings</option>
-						<option value="Zapf Dingbats">Zapf Dingbats</option>
-					</select>
-					<input type="text" class="myText" id="text__config__value" value="replace me!">
-				</div>
-				<div class="rotate__config">
-					<!-- for rotate -->
-					<label for="rotate__config__angle">rotation angle:</label>
-					<input type="range" min="1" max="360" name="rotate__config__angle" value="0" class="slider" id="rotate__config__angle">
-				</div>
-				<!-- for filter input -->
-				<div class="filter__config">
-					<input type="range" min="0" max="200" name="filter__config__brightness" value="100" class="slider" id="filter__config__brightness">
-					<input type="range" min="0" max="100" name="filter__config__contrast" value="50" class="slider" id="filter__config__contrast">
-					<input type="range" min="0" max="100" name="filter__config__grayscale" value="50" class="slider" id="filter__config__grayscale">
-					<input type="range" min="0" max="100" name="filter__config__saturation" value="0" class="slider" id="filter__config__saturation">
-					<input type="range" min="0" max="100" name="filter__config__sepia" value="50" class="slider" id="filter__config__sepia">
-					<input type="range" min="0" max="360" name="filter__config__hue" value="0" class="slider" id="filter__config__hue">
-				</div>
-
-			</div>
-		</div>
-	</nav>
-	<section id="bodycontainer">
-		<div class="bodycontainer__left">
-			<div class="bodycontainer__left__icon__wrapper">
-				<!-- pen -->
-				<img class="myImageIcon" src="./images/icons/pen.png" alt="pen icon">
-				<img class="myImageIcon" src="./images/icons/eraser.png" alt="icon">
-				<!-- scale -->
-				<img class="myImageIcon" src="./images/icons/scale.png" alt="icon">
-				<!-- move -->
-				<img class="myImageIcon" src="./images/icons/move.png" alt="icon">
-				<!-- rotate -->
-				<img class="myImageIcon" src="./images/icons/rotate.png" alt="icon">
-				<!-- text -->
-				<img class="myImageIcon" src="./images/icons/text.png" alt="icon">
-				<!-- crop image icon -->
-				<img class="myImageIcon" src="./images/icons/crop.png" alt="icon">
-			</div>
-			<div class="bodycontainer__left__bottom_color">
-				<input type="color" id="colorpicker" value="#000000">
-			</div>
-		</div>
-		<div class="bodycontainer__middle">
-			<div id="myCanvasWrapper">
-
-			</div>
-		</div>
-		<div class="bodycontainer__right">
-			<div class="bodycontainer__right__control">
-				<img class="bodycontainer__right__control__control__move__down" src="./images/icons/arrow-button-navigation-circle-down.png" alt="control move down"/>
-				<img class="bodycontainer__right__control__control__move__up" src="./images/icons/arrow-button-navigation-circle-up.png" alt="control move up">
-			</div>
-
-			
-		</div>
-	</section>
-	<script src="./js/main.js"></script>
-	<script src="./js/color/color.js"></script>
-	<script src="./js/quickToolConfig/config.js"></script>
-	<script src="./js/topbar/topbarEventHandler.js"></script>
-	<script src="./js/layer/addLayer.js"></script>
-	<script src="./js/quickAccssTool/toolclick.js"></script>
-	<script src="./js/configWindow/visibility.js"></script>
-	<script src="./js/canvas/canvasProperties.js"></script>
-	<script src="./js/images/matrix.js"></script>
-
-</body>
+          <div class="text__config">
+            <!-- for text -->
+            <!-- font size, font type -->
+            <select id="font__config__style" class="mySelectMenu">
+              <option value="normal">Normal</option>
+              <option value="italic">Italic</option>
+              <option value="bold">Bold</option>
+            </select>
+            <label for="font__config__size">font size:</label>
+            <input
+              type="range"
+              min="1"
+              max="100"
+              name="font__config__size"
+              value="20"
+              class="slider"
+              id="font__config__size"
+            />
+            <select id="font__config__family" class="mySelectMenu">
+              <option value="Calibri">Calibri</option>
+              <option value="Arial">Arial</option>
+              <option value="Helvetica">Helvetica</option>
+              <option value="Times New Roman">Times New Roman</option>
+              <option value="Verdana">Verdana</option>
+              <option value="Georgia">Georgia</option>
+              <option value="Courier New">Courier New</option>
+              <option value="Impact">Impact</option>
+              <option value="Comic Sans MS">Comic Sans MS</option>
+              <option value="Tahoma">Tahoma</option>
+              <option value="Trebuchet MS">Trebuchet MS</option>
+              <option value="Palatino Linotype">Palatino Linotype</option>
+              <option value="Lucida Sans Unicode">Lucida Sans Unicode</option>
+              <option value="MS Sans Serif">MS Sans Serif</option>
+              <option value="MS Serif">MS Serif</option>
+              <option value="Symbol">Symbol</option>
+              <option value="Webdings">Webdings</option>
+              <option value="Wingdings">Wingdings</option>
+              <option value="Zapf Dingbats">Zapf Dingbats</option>
+            </select>
+            <input
+              type="text"
+              class="myText"
+              id="text__config__value"
+              value="replace me!"
+            />
+          </div>
+          <div class="rotate__config">
+            <!-- for rotate -->
+            <label for="rotate__config__angle">rotation angle:</label>
+            <input
+              type="range"
+              min="1"
+              max="360"
+              name="rotate__config__angle"
+              value="0"
+              class="slider"
+              id="rotate__config__angle"
+            />
+          </div>
+          <!-- for filter input -->
+          <div class="filter__config">
+            <input
+              type="range"
+              min="0"
+              max="200"
+              name="filter__config__brightness"
+              value="100"
+              class="slider"
+              id="filter__config__brightness"
+            />
+            <input
+              type="range"
+              min="0"
+              max="100"
+              name="filter__config__contrast"
+              value="50"
+              class="slider"
+              id="filter__config__contrast"
+            />
+            <input
+              type="range"
+              min="0"
+              max="100"
+              name="filter__config__grayscale"
+              value="50"
+              class="slider"
+              id="filter__config__grayscale"
+            />
+            <input
+              type="range"
+              min="0"
+              max="100"
+              name="filter__config__saturation"
+              value="0"
+              class="slider"
+              id="filter__config__saturation"
+            />
+            <input
+              type="range"
+              min="0"
+              max="100"
+              name="filter__config__sepia"
+              value="50"
+              class="slider"
+              id="filter__config__sepia"
+            />
+            <input
+              type="range"
+              min="0"
+              max="360"
+              name="filter__config__hue"
+              value="0"
+              class="slider"
+              id="filter__config__hue"
+            />
+          </div>
+        </div>
+      </div>
+    </nav>
+    <section id="bodycontainer">
+      <div class="bodycontainer__left">
+        <div class="bodycontainer__left__icon__wrapper">
+          <!-- pen -->
+          <img
+            class="myImageIcon"
+            src="./images/icons/pen.png"
+            alt="pen icon"
+          />
+          <img class="myImageIcon" src="./images/icons/eraser.png" alt="icon" />
+          <!-- scale -->
+          <img class="myImageIcon" src="./images/icons/scale.png" alt="icon" />
+          <!-- move -->
+          <img class="myImageIcon" src="./images/icons/move.png" alt="icon" />
+          <!-- rotate -->
+          <img class="myImageIcon" src="./images/icons/rotate.png" alt="icon" />
+          <!-- text -->
+          <img class="myImageIcon" src="./images/icons/text.png" alt="icon" />
+          <!-- crop image icon -->
+          <img class="myImageIcon" src="./images/icons/crop.png" alt="icon" />
+        </div>
+        <div class="bodycontainer__left__bottom_color">
+          <input type="color" id="colorpicker" value="#000000" />
+        </div>
+      </div>
+      <div class="bodycontainer__middle">
+        <div id="myCanvasWrapper"></div>
+      </div>
+      <div class="bodycontainer__right">
+        <div class="bodycontainer__right__control">
+          <img
+            class="bodycontainer__right__control__control__move__down"
+            src="./images/icons/arrow-button-navigation-circle-down.png"
+            alt="control move down"
+          />
+          <img
+            class="bodycontainer__right__control__control__move__up"
+            src="./images/icons/arrow-button-navigation-circle-up.png"
+            alt="control move up"
+          />
+        </div>
+      </div>
+    </section>
+    <script src="./js/main.js"></script>
+    <script src="./js/color/color.js"></script>
+    <script src="./js/quickToolConfig/config.js"></script>
+    <script src="./js/topbar/topbarEventHandler.js"></script>
+    <script src="./js/layer/addLayer.js"></script>
+    <script src="./js/quickAccssTool/toolclick.js"></script>
+    <script src="./js/configWindow/visibility.js"></script>
+    <script src="./js/canvas/canvasProperties.js"></script>
+    <script src="./js/images/matrix.js"></script>
+  </body>
 </html>
